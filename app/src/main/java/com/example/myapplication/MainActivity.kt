@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
@@ -37,9 +38,28 @@ class MainActivity : AppCompatActivity() {
         button=findViewById(R.id.button)
         password_check=findViewById(R.id.pwd_check)
 
-
+        var User_pwd=password.text.toString() //입력받은 비밀번호를 문자열로 바꿔서 User_pwd에 저장
+        var User_repwd=password_check.text.toString() //재확인할 비밀번호를 문자열로 User_repwd에 저장
         button.setOnClickListener{
-            auth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+
+            //빈칸 확인 및 비밀번호 확인
+            if(TextUtils.isEmpty(id.text.toString())){
+                Toast.makeText(this,"아이디를 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+
+            if(TextUtils.isEmpty(email.text.toString())){
+                Toast.makeText(this,"이메일을 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+
+            if(!User_pwd.equals(User_repwd)){
+                Toast.makeText(this,"비밀번호가 일치하지 않습니다", Toast.LENGTH_SHORT).show()
+            }
+
+            if(TextUtils.isEmpty(password_check.text.toString())){
+                Toast.makeText(this,"비밀번호 확인을 입력해주세요", Toast.LENGTH_SHORT).show()
+            }
+
+            auth.createUserWithEmailAndPassword(email.text.toString(), User_pwd)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         var user: FirebaseUser?=auth.currentUser
