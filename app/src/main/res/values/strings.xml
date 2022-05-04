@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- 마이 페이지 타이틀 -->
+    <string name="my_page_title">프로필</string>
+    <string name="test_username">Banana</string>
+    <string name="user_grade_title">내 점수</string>
 </resources>
