@@ -124,27 +124,191 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.577" />
 
-    <ImageView
-        android:layout_width="600px"
-        android:layout_height="2px"
-        android:scaleType="fitXY"
-        android:src="@drawable/black_square"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        <View
+            android:layout_width="600px"
+            android:layout_height="2dp"
+            android:background="@color/lightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.61" />
 
-    <TextView
-        android:id="@+id/myReview"
-        android:layout_width="900px"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.664" />
+        <TextView
+            android:id="@+id/myReview"
+            android:layout_width="1000px"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_layout"
+            android:maxLines="4"
+            android:paddingHorizontal="50px"
+            android:paddingVertical="50px"
+            android:scrollbars="vertical"
+            android:text="@string/test_my_review"
+            android:textColor="@color/darkGrey"
+            android:textSize="35px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.74" />
+
+        <TextView
+            android:id="@+id/userMateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_mate_title"
+            android:textColor="@color/darkGrey"
+            android:textSize="50px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.828" />
+
+        <LinearLayout
+            android:id="@+id/userMateList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.99" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="98dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mate1_profileImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/test_profile_image"
+                    app:civ_border_color="@color/lightGrey"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/mate1_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/test_mate1_username"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="30px"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/mate1_reviewButton"
+                    android:layout_width="50dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginVertical="3dp"
+                    android:text="평가하기"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20px"
+                    android:background="@drawable/round_layout"
+                    android:backgroundTint="@color/darkGrey" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="98dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mate2_profileImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/test_profile_image"
+                    app:civ_border_color="@color/lightGrey"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/mate2_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/test_mate2_username"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="30px"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/mate2_reviewButton"
+                    android:layout_width="50dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginVertical="3dp"
+                    android:text="평가하기"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20px"
+                    android:background="@drawable/round_layout"
+                    android:backgroundTint="@color/darkGrey" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="98dp"
+                android:orientation="vertical"
+                android:layout_margin="5dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/mate3_profileImage"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/test_profile_image"
+                    app:civ_border_color="@color/lightGrey"
+                    app:civ_border_overlay="true"
+                    app:civ_border_width="1dp" />
+
+                <TextView
+                    android:id="@+id/mate3_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/test_mate3_username"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="30px"
+                    android:textStyle="normal" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/mate3_reviewButton"
+                    android:layout_width="50dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="center"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:layout_marginVertical="3dp"
+                    android:text="평가하기"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="20px"
+                    android:background="@drawable/round_layout"
+                    android:backgroundTint="@color/darkGrey" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
