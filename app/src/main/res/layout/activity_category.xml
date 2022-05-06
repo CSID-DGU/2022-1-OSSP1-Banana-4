@@ -30,7 +30,7 @@
         android:id="@+id/cb3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="파파존스" />
+        android:text="아무거나" />
 
     <Button
         android:id="@+id/btn1"
