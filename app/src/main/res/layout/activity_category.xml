@@ -11,32 +11,32 @@
         android:id="@+id/tv1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="먹고싶은 브랜드를 선택하세요" />
 
     <CheckBox
         android:id="@+id/cb1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cb1"
+        android:text="피자헛"
         android:checked="true"/>
 
     <CheckBox
         android:id="@+id/cb2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cb2" />
+        android:text="도미노" />
 
     <CheckBox
         android:id="@+id/cb3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="cb3" />
+        android:text="파파존스" />
 
     <Button
         android:id="@+id/btn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="체크 확인" />
+        android:text="찾기" />
 
 
 
