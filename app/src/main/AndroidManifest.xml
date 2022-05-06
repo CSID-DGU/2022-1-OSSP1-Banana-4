@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".category"
+            android:exported="false" />
+        <activity
+            android:name=".Category"
+            android:exported="false" />
+        <activity
             android:name=".UserAdapter"
             android:exported="false" />
         <activity
