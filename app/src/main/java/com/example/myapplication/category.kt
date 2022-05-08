@@ -13,7 +13,7 @@ class category : AppCompatActivity() {
         setContentView(R.layout.activity_category)
 
 
-        btn1.setOnClickListener { view ->
+        btn_search.setOnClickListener { view ->
             tv1.text = ""
 
             if (cb1.isChecked)

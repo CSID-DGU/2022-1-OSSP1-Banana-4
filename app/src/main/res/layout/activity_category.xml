@@ -5,38 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".category">
+    android:background="@drawable/bg_banana"
+    tools:context=".category"
+    >
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="먹고싶은 브랜드를 선택하세요" />
 
-    <CheckBox
-        android:id="@+id/cb1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="피자헛"
-        android:checked="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="253dp">
 
-    <CheckBox
-        android:id="@+id/cb2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="도미노" />
+    </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/cb3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="아무거나" />
 
-    <Button
-        android:id="@+id/btn1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="찾기" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/bg_whiteRound"
+
+        >
+
+        <TextView
+
+            android:id="@+id/tv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="먹고싶은 브랜드를 선택하세요"
+            android:textSize="30dp"/>
+
+
+        <LinearLayout
+            android:layout_width="380dp"
+            android:layout_height="340dp"
+            android:layout_margin="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="288dp"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:id="@+id/cb0"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="피자헛" />
+
+                <CheckBox
+                    android:id="@+id/cb1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="도미노" />
+
+                <CheckBox
+                    android:id="@+id/cb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="파파존스" />
+
+                <CheckBox
+                    android:id="@+id/cb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="피자에땅" />
+
+                <CheckBox
+                    android:id="@+id/cb4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="상관없음" />
+
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="133dp"
+                android:layout_height="145dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/pizza" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="122dp"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btn_again"
+                android:layout_width="112dp"
+                android:layout_height="65dp"
+                android:text="다시하기"
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="112dp"
+                android:layout_height="65dp"
+                android:text="찾기" />
+
+             />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
 
 
 
