@@ -14,69 +14,73 @@
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyPage">
-
+    tools:context=".MyPage"
+        android:background="@drawable/mypage_background">
 
     <!--
-    1. 마이 페이지 타이틀
-    2. 뒤로가기 버튼
-    3. 프로필 사진
-    4. 사용자 닉네임
-    5. 사용자 점수
-    6. 사용자 점수 그림
-    7. 분할 선
-    8. 최근에 받은 평가
-    9. 내 메이트 보기 타이틀
+    1. 마이 페이지 타이틀 id : myPageTitle
+    2. 뒤로가기 버튼 id : beforeButton"
+    3. 프로필 사진 id : profileImage
+    4. 사용자 닉네임 id : username
+    5. 사용자 점수 타이틀 id : userGradeTitle
+    6. 사용자 점수 그림 id : ratingBar
+    7. 분할 선 id : line1
+    8. 최근에 받은 평가 id : myReview
+    9. 내 메이트 보기 타이틀 id : userMateList
     10. 내 메이트들
+        - 프로필 사진 id : mate1_profileImage
+        - 사용자 닉네임 id : mate1_username
+        - 평가하기 버튼 id : mate1_reviewButton
     -->
 
-    <TextView
-        android:id="@+id/myPageTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-black"
-        android:text="@string/my_page_title"
-        android:textColor="@color/black"
-        android:textSize="70px"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+        <TextView
+            android:id="@+id/myPageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-black"
+            android:text="@string/my_page_title"
+            android:textColor="@color/black"
+            android:textSize="70px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.134" />
 
-    <ImageButton
-        android:id="@+id/beforeButton"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:background="@color/white"
-        android:padding="0sp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/left_arrow"
-        app:civ_border_color="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.098" />
+        <ImageButton
+            android:id="@+id/beforeButton"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@color/white"
+            android:padding="0sp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mypage_left_arrow"
+            app:civ_border_color="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.141" />
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profileImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/test_profile_image"
-        app:civ_border_color="@color/lightGrey"
-        app:civ_border_overlay="true"
-        app:civ_border_width="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.227" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/mypage_test_profile_image"
+            app:civ_border_color="@color/lightGrey"
+            app:civ_border_overlay="true"
+            app:civ_border_width="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.254" />
 
-    <TextView
+        <TextView
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -91,55 +95,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.455" />
 
-    <TextView
-        android:id="@+id/userGradeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/user_grade_title"
-        android:textColor="@color/darkGrey"
-        android:textSize="50px"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.514" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:rating="3.5"
-        android:scaleX="0.8"
-        android:scaleY="0.8"
-        android:stepSize="0.5"
-        android:theme="@style/RatingBar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.577" />
-
-        <View
-            android:layout_width="600px"
-            android:layout_height="2dp"
-            android:background="@color/lightGrey"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.61" />
-
         <TextView
             android:id="@+id/myReview"
             android:layout_width="1000px"
             android:layout_height="wrap_content"
-            android:background="@drawable/round_layout"
+            android:background="@drawable/mypage_round_layout"
             android:maxLines="4"
             android:paddingHorizontal="50px"
             android:paddingVertical="50px"
@@ -153,7 +113,52 @@
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.74" />
+            app:layout_constraintVertical_bias="0.714" />
+
+        <TextView
+            android:id="@+id/userGradeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user_grade_title"
+            android:textColor="@color/darkGrey"
+            android:textSize="50px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.491" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="3.5"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.552" />
+
+        <View
+            android:id="@+id/line1"
+            android:layout_width="600px"
+            android:layout_height="2dp"
+            android:background="@color/lightGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.587" />
 
         <TextView
             android:id="@+id/userMateTitle"
@@ -165,10 +170,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.077"
+            app:layout_constraintHorizontal_bias="0.081"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.828" />
+            app:layout_constraintVertical_bias="0.815" />
 
         <LinearLayout
             android:id="@+id/userMateList"
@@ -177,23 +182,23 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.99" >
+            app:layout_constraintVertical_bias="0.96">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="98dp"
-                android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/mate1_profileImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/test_profile_image"
+                    android:src="@drawable/mypage_test_profile_image"
                     app:civ_border_color="@color/lightGrey"
                     app:civ_border_overlay="true"
                     app:civ_border_width="1dp" />
@@ -213,28 +218,29 @@
                     android:layout_width="50dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/mypage_round_layout"
+                    android:backgroundTint="@color/darkGrey"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:layout_marginVertical="3dp"
                     android:text="평가하기"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="20px"
-                    android:background="@drawable/round_layout"
-                    android:backgroundTint="@color/darkGrey" />
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="98dp"
-                android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/mate2_profileImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/test_profile_image"
+                    android:src="@drawable/mypage_test_profile_image"
                     app:civ_border_color="@color/lightGrey"
                     app:civ_border_overlay="true"
                     app:civ_border_width="1dp" />
@@ -254,28 +260,29 @@
                     android:layout_width="50dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/mypage_round_layout"
+                    android:backgroundTint="@color/darkGrey"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:layout_marginVertical="3dp"
                     android:text="평가하기"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="20px"
-                    android:background="@drawable/round_layout"
-                    android:backgroundTint="@color/darkGrey" />
+                    android:textStyle="bold" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="98dp"
-                android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_margin="5dp"
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/mate3_profileImage"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/test_profile_image"
+                    android:src="@drawable/mypage_test_profile_image"
                     app:civ_border_color="@color/lightGrey"
                     app:civ_border_overlay="true"
                     app:civ_border_width="1dp" />
@@ -295,15 +302,15 @@
                     android:layout_width="50dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
+                    android:layout_marginVertical="3dp"
+                    android:background="@drawable/mypage_round_layout"
+                    android:backgroundTint="@color/darkGrey"
                     android:minWidth="0dp"
                     android:minHeight="0dp"
-                    android:layout_marginVertical="3dp"
                     android:text="평가하기"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
                     android:textSize="20px"
-                    android:background="@drawable/round_layout"
-                    android:backgroundTint="@color/darkGrey" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
 
