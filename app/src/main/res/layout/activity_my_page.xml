@@ -4,16 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="mainViewModel"
-            type="com.example.myapplication.MyPage"
-            />
-        <variable
-            name="user"
-            type="com.example.myapplication.MyPage" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,19 +12,19 @@
         android:id="@+id/layout">
 
     <!--
-    1. 마이 페이지 타이틀 id : myPageTitle
-    2. 뒤로가기 버튼 id : beforeButton"
-    3. 프로필 사진 id : profileImage
+    1. 마이 페이지 타이틀 id : my_page_title
+    2. 뒤로가기 버튼 id : to_main_button
+    3. 프로필 사진 id : profile_image
     4. 사용자 닉네임 id : username
-    5. 사용자 점수 타이틀 id : userGradeTitle
-    6. 사용자 점수 그림 id : ratingBar
+    5. 사용자 점수 타이틀 id : user_grade_title
+    6. 사용자 점수 그림 id : rating_bar
     7. 분할 선 id : line1
-    8. 최근에 받은 평가 id : myReview
-    9. 내 메이트 보기 타이틀 id : userMateList
+    8. 최근에 받은 평가 id : my_review
+    9. 내 메이트 보기 타이틀 id : user_mate_list
     10. 내 메이트들
-        - 프로필 사진 id : mate1_profileImage
+        - 프로필 사진 id : mate1_profile_image
         - 사용자 닉네임 id : mate1_username
-        - 평가하기 버튼 id : mate1_reviewButton
+        - 평가하기 버튼 id : mate1_review_button
     -->
 
         <TextView
@@ -54,7 +44,7 @@
             app:layout_constraintVertical_bias="0.134" />
 
         <ImageButton
-            android:id="@+id/before_button"
+            android:id="@+id/to_main_button"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:background="@color/white"
@@ -97,7 +87,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.455" />
+        app:layout_constraintVertical_bias="0.448" />
 
         <TextView
             android:id="@+id/my_review"
