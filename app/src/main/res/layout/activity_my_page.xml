@@ -34,14 +34,14 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/my_page_title"
             android:textColor="@color/black"
-            android:textSize="70px"
+            android:textSize="60px"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.134" />
+            app:layout_constraintVertical_bias="0.133" />
 
         <ImageButton
             android:id="@+id/to_main_button"
@@ -54,15 +54,15 @@
             app:civ_border_color="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.139" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:src="@drawable/mypage_test_profile_image"
             app:civ_border_color="@color/lightGrey"
             app:civ_border_overlay="true"
@@ -75,33 +75,27 @@
             app:layout_constraintVertical_bias="0.254" />
 
         <TextView
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/test_username"
-        android:textColor="@color/black"
-        android:textSize="50px"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/test_username"
+            android:textColor="@color/black"
+            android:textSize="50px"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.453" />
 
-        <TextView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/my_review"
             android:layout_width="1000px"
-            android:layout_height="wrap_content"
+            android:layout_height="250px"
             android:background="@drawable/mypage_round_layout"
-            android:maxLines="4"
-            android:paddingHorizontal="50px"
-            android:paddingVertical="50px"
-            android:scrollbars="vertical"
-            android:text="@string/test_my_review"
-            android:textColor="@color/darkGrey"
-            android:textSize="35px"
-            android:textStyle="bold"
+            android:orientation="vertical"
+            tools:listitem="@layout/item_review"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
@@ -166,7 +160,7 @@
             app:layout_constraintHorizontal_bias="0.081"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.815" />
+            app:layout_constraintVertical_bias="0.809" />
 
         <LinearLayout
             android:id="@+id/user_mate_list"
@@ -175,10 +169,10 @@
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintHorizontal_bias="0.07"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.96">
+            app:layout_constraintVertical_bias="0.991">
 
             <LinearLayout
                 android:layout_width="wrap_content"

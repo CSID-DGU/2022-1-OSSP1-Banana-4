@@ -3,6 +3,7 @@ package com.example.myapplication
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.RatingBar
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -14,6 +15,12 @@ class MyPage : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
+
+    // review recyclerview
+    lateinit var reviewAdapter: ReviewAdapter
+    private val reviews = mutableListOf<ReviewData>()
+
+    private lateinit var ratingbar :RatingBar
 
     /*
        * <DB, ID>
@@ -32,20 +39,36 @@ class MyPage : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
 
+        ratingbar = findViewById(R.id.rating_bar)
 
         // firebase 데이터 연동
         val user = db.collection("users").document(auth.currentUser?.uid.toString())
 
         user.get().addOnSuccessListener{ documentSnapshot ->
-            username.setText(documentSnapshot.get("userNickname").toString())
+            username.text = documentSnapshot.get("userNickname").toString()
             val uri : Uri = Uri.parse(documentSnapshot.get("userImage").toString())
             profile_image.setImageURI(uri)
-            rating_bar.rating = documentSnapshot.getDouble("userGrade")?.toFloat()!!
-            my_review.setText(documentSnapshot.get("userReview").toString())
+            // rating_bar.rating = documentSnapshot.getDouble("userGrade")?.toFloat()!!
         }
 
+        rating_bar.rating = 2f
+        ratingbar.onRatingBarChangeListener
 
-        // mate review button 클릭하면 review.kt 로 데이터 전달 & 이동
+        // review 불러오기
+        reviewAdapter = ReviewAdapter(this)
+        my_review.adapter = reviewAdapter
+
+        reviews.apply{
+            add(ReviewData("- 돈을 너무 늦게 줍니다."))
+            add(ReviewData("- 주문을 너무 잘 해주셨습니다."))
+            add(ReviewData("- 너무 친절해요!"))
+            add(ReviewData("- 응답이 너무 느려요.."))
+
+            reviewAdapter.reviews = reviews
+            reviewAdapter.notifyDataSetChanged()
+        }
+
+        // mate review button 클릭하면 review.kt 로 메이트 uid 데이터 전달 & 이동
        mate1_review_button.setOnClickListener{
             val intent = Intent(this, Review::class.java)
             // intent.putExtra("mate_id","${auth.currentUser?.mate.uid.toString()}")

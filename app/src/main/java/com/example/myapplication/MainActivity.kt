@@ -90,11 +90,12 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
         }
-
     }
 
     private fun updateUI(user:FirebaseUser?) {
         val intent=Intent(this,Login::class.java)
         startActivity(intent)
     }
+
+
 }

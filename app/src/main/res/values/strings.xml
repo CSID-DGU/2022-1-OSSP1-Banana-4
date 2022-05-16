@@ -8,7 +8,6 @@
     <string name="test_username">Banana</string>
     <string name="user_grade_title">내 점수</string>
     <string name="user_mate_title">내 메이트들</string>
-    <string name="test_my_review">- 돈을 너무 늦게 줍니다.\n- 주문을 너무 잘 해주셨습니다.\n- 너무 친절해요\n- 응답이 너무 느려요..</string>
     <string name="test_mate1_username">Apple</string>
     <string name="test_mate2_username">Grape</string>
     <string name="test_mate3_username">Tomato</string>

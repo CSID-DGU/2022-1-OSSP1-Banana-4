@@ -23,6 +23,7 @@
     8. 평가 메세지 id : review
     9. 평가하기 버튼 id : review_button
     -->
+
         <TextView
             android:id="@+id/review_title"
             android:layout_width="wrap_content"
@@ -30,14 +31,14 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/review_title"
             android:textColor="@color/black"
-            android:textSize="70px"
+            android:textSize="60px"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.134" />
+            app:layout_constraintVertical_bias="0.133" />
 
         <ImageButton
             android:id="@+id/to_my_page_button"
@@ -50,15 +51,15 @@
             app:civ_border_color="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintHorizontal_bias="0.053"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.141" />
+            app:layout_constraintVertical_bias="0.139" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             android:src="@drawable/mypage_test_profile_image"
             app:civ_border_color="@color/lightGrey"
             app:civ_border_overlay="true"
@@ -80,10 +81,9 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.448" />
+            app:layout_constraintVertical_bias="0.453" />
 
         <TextView
             android:id="@+id/user_grade_title"
@@ -140,15 +140,15 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.631" />
+            app:layout_constraintVertical_bias="0.667" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/review"
-            android:layout_width="385dp"
-            android:layout_height="141dp"
+            android:layout_width="371dp"
+            android:layout_height="103dp"
             android:background="@drawable/mypage_round_layout"
             android:hint="솔직한 후기를 적어주세요."
             android:padding="20px"
@@ -156,7 +156,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.784" />
+            app:layout_constraintVertical_bias="0.821" />
 
         <ImageButton
             android:id="@+id/review_button"
@@ -172,7 +172,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.88" />
+            app:layout_constraintVertical_bias="0.923" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

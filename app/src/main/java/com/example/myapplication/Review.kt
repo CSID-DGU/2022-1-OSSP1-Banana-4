@@ -67,6 +67,8 @@ class Review : AppCompatActivity()  {
         }
 
         review_button.setOnClickListener{
+            val intent = Intent(this,MyPage::class.java)
+
             // 별점 평점 update
             var new_mateNum : Int = mateNum + 1
             var new_mateGrade : Float = (grade+mateGrade) / new_mateNum
@@ -76,6 +78,8 @@ class Review : AppCompatActivity()  {
 
             // 사용자 후기 update
             mate.update("userReview",review.text.toString())
+
+            startActivity(intent)
         }
 
         // 이전으로 가기 버튼 클릭하면 마이 페이지로 이동
@@ -83,7 +87,6 @@ class Review : AppCompatActivity()  {
             val intent = Intent(this, MyPage::class.java)
             startActivity(intent)
         }
-
     }
 }
 
