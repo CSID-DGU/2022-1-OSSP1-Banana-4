@@ -4,27 +4,22 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.RatingBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
+import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_my_page.*
-import kotlin.properties.Delegates
 
 class MyPage : AppCompatActivity() {
 
     // firebase
-    private val db = FirebaseFirestore.getInstance()
     private lateinit var auth: FirebaseAuth
-    private lateinit var dbReference: DatabaseReference
 
     // review recyclerview
-    lateinit var reviewAdapter: ReviewAdapter
+    private lateinit var reviewAdapter: ReviewAdapter
     private val reviews = mutableListOf<ReviewData>()
 
     // mate recyclerview
@@ -32,6 +27,8 @@ class MyPage : AppCompatActivity() {
     private val mates = mutableListOf<MateData>()
 
     private lateinit var ratingbar :RatingBar
+    private lateinit var username : TextView
+    private lateinit var profileImage : CircleImageView
     private var grade : Float = 0.0f
     private var reviewList = mutableListOf<String>()
     private var mateList = mutableListOf<String>()
@@ -42,28 +39,36 @@ class MyPage : AppCompatActivity() {
         setContentView(R.layout.activity_my_page)
 
         auth = FirebaseAuth.getInstance()
+        username = findViewById(R.id.username)
+        profileImage = findViewById(R.id.profile_image)
         ratingbar = findViewById(R.id.rating_bar)
 
         // firebase 데이터 연동
-        val user = db.collection("users").document(auth.currentUser?.uid.toString())
+        val uid = auth.currentUser?.uid.toString()
+        val user = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
         // 현재 user의 속성 불러오기
-        user.get().addOnSuccessListener{ documentSnapshot ->
-            username.text = documentSnapshot.get("userNickname").toString()         // 닉네임
-            val uri : Uri = Uri.parse(documentSnapshot.get("userImage").toString()) // 프로필이미지 uri
-            profile_image.setImageURI(uri)                                          // profile_image URI를 uri로 설정
-            grade = documentSnapshot.getDouble("userGrade")?.toFloat()!!       // 평점
-            reviewList = documentSnapshot.get("userReview") as MutableList<String>  // 리뷰
-            mateList = documentSnapshot.get("userMate") as MutableList<String>      // 메이트 리스트
-            mateNum=mateList.count()                                                // 메이트 수(mateList의 수)
+        user.get().addOnSuccessListener { dataSnapshot ->
+            // 임시 코드
+            username.text = "Apple"
+
+            // 실제 코드
+            username.text = dataSnapshot.child("userNickname").toString()           // 닉네임
+            val uri : Uri = Uri.parse(dataSnapshot.child("userImage").toString())   // 프로필이미지 uri
+            profileImage.setImageURI(uri)                                                // profile_image URI를 uri로 설정
+            grade = dataSnapshot.child("userGrade").toString().toFloat()            // 평점
+            reviewList = dataSnapshot.child("userReview") as MutableList<String>    // 리뷰
+            mateList = dataSnapshot.child("userMate") as MutableList<String>        // 메이트 리스트
+            mateNum=mateList.count()
         }
 
         // rating_bar 초기화
         // 임시 코드
-        rating_bar.rating = 2f
+        ratingbar.rating = 2f
 
         // 실제 코드
         // rating_bar.rating = grade
+
         ratingbar.onRatingBarChangeListener
 
         // review adapter
@@ -102,7 +107,7 @@ class MyPage : AppCompatActivity() {
                     position: Int
                 ) {
                     val intent = Intent(view.context, Review::class.java)
-                    intent.putExtra("mate_id", user.id)
+                    intent.putExtra("mate_id", uid)
                     intent.putExtra("mate_name","Apple")
                     startActivity(intent)
                 }
@@ -115,7 +120,7 @@ class MyPage : AppCompatActivity() {
                     position: Int
                 ) {
                     val intent = Intent(view.context, Review::class.java)
-                    intent.putExtra("mate_id", user.id)
+                    intent.putExtra("mate_id", uid)
                     intent.putExtra("mate_name","Tomato")
                     startActivity(intent)
                 }
@@ -124,12 +129,13 @@ class MyPage : AppCompatActivity() {
             // 실제 코드
             /*
             for(i in 0 until mateNum) {
-                val mate = db.collection("users").document(mateList[i])
+                val mate = FirebaseDatabase.getInstance().getReference("Users").child(mateList[i])
                 var username : String =""
                 var uri : Uri = Uri.parse("")
-                mate.get().addOnSuccessListener { documentSnapshot ->
-                    username = documentSnapshot.get("userNickname").toString()
-                    uri = Uri.parse(documentSnapshot.get("userImage").toString())
+
+                mate.get().addOnSuccessListener { dataSnapshot ->
+                    username = dataSnapshot.child("userNickname").toString()
+                    uri = Uri.parse(dataSnapshot.child("userImage").toString())
                 }
                 add(MateData(mateList[i], username, uri))
                 mateAdapter.listener = object : OnClickListener {
@@ -144,7 +150,7 @@ class MyPage : AppCompatActivity() {
                     }
                 }
             }
-             */
+            */
             mateAdapter.mates = mates
             mateAdapter.notifyDataSetChanged()
         }
