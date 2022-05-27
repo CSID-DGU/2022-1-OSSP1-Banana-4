@@ -17,24 +17,21 @@
         3.
         -->
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/loading"
-            android:layout_width="332dp"
-            android:layout_height="331dp"
-            app:civ_border_color="@color/lightGrey"
-            app:civ_border_overlay="true"
-            app:civ_border_width="2dp"
+            android:layout_width="358dp"
+            android:layout_height="371dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
+            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.294" />
+            app:layout_constraintVertical_bias="0.274" />
 
         <ImageView
             android:id="@+id/ctg_image"
-            android:layout_width="234dp"
-            android:layout_height="239dp"
+            android:layout_width="201dp"
+            android:layout_height="203dp"
             android:scaleType="centerInside"
             android:src="@drawable/pizza"
             app:civ_border_color="@color/lightGrey"
@@ -42,10 +39,9 @@
             app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32" />
+            app:layout_constraintVertical_bias="0.331" />
 
         <TextView
             android:id="@+id/message"
