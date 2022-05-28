@@ -13,9 +13,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".MainPageActivity"
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainPage"
             android:exported="false" />
         <activity
             android:name=".SelectImageActivity"
