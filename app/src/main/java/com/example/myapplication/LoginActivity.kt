@@ -1,5 +1,4 @@
-package com.example.myapplication
-
+package com.example.signinup
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -8,6 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.signinup.FindPasswordActivity
+import com.example.signinup.R
+import com.example.signinup.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -48,25 +50,26 @@ class LoginActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         email.setText("")
                         pwd.setText("")
-                        val intent = //Intent(this,메인페이지)
+                        val intent = Intent(this,MainPageActivity::class.java)
                         startActivity(intent)
                         finish()
                     }
                     else{
-                        Toast.makeText(applicationContext,
+                        Toast.makeText(this,
                             "이메일 또는 비밀번호가 유효하지 않습니다",
-                        Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
         btn_signup.setOnClickListener{
-            val intent=Intent(this,MainActivity::class.java)
+            val intent=Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         btn_findpwd.setOnClickListener{
-            val intent=Intent(this,FindpasswordActivity::class.java)
+            val intent=Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
         }
     }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity_chatting">
+    android:background="@drawable/banana_background"
+    tools:context=".MainPageActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
