@@ -9,6 +9,7 @@ data class Brand (
     val num:Int=0,
     val cate_num:Int=0
 
+
 )
 
 
