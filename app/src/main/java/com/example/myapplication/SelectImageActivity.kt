@@ -1,13 +1,12 @@
-package com.example.myapplication
-
+package com.example.signinup
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.myapplication.databinding.ActivitySelectImageBinding
-import com.google.android.gms.auth.api.signin.internal.Storage
+import com.example.signinup.databinding.ActivitySelectImageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -45,11 +44,11 @@ class SelectImageActivity : AppCompatActivity() {
         }
 
         binding.Button.setOnClickListener{
-            uploadImage()
-            //메인 페이지로 이동
-            val intent = Intent(this, MainPage::class.java)
-            startActivity(intent)
-            finish()
+                uploadImage()
+                //메인 페이지로 이동
+                val intent = Intent(this, MainPageActivity::class.java)
+                startActivity(intent)
+                finish()
         }
     }
 
@@ -65,12 +64,12 @@ class SelectImageActivity : AppCompatActivity() {
 
     private fun uploadImage() {
         databaseReference =
-            FirebaseDatabase.getInstance().getReference().child("Users").child(auth.uid!!).child("userImage")
+            FirebaseDatabase.getInstance().getReference().child("Users").child(auth.uid!!)
         storageReference = FirebaseStorage.getInstance().getReference().child("Image").child(auth.uid!!)
         var hashmap: HashMap<String, String> = HashMap()
         hashmap.put("userImage",selectImage.toString())
 
-        databaseReference.setValue(hashmap)
+        databaseReference.child("userImage").setValue(selectImage.toString())
         storageReference.putFile(selectImage)
     }
 }
