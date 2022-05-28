@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MatchLoading"
+        tools:context=".matching.MatchLoading"
         android:background="@drawable/match_loading_background"
         android:id="@+id/layout">
 

@@ -30,16 +30,19 @@
             android:name=".SelectImageActivity"
             android:exported="false" />
         <activity
-            android:name=".UserAdapter"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".FindPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".MatchLoading"
+            android:name=".categoryPage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".matching.MatchLoading"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

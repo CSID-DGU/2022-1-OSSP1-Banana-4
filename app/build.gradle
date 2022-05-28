@@ -75,9 +75,6 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:29.3.1')
     implementation 'com.google.firebase:firebase-storage-ktx'
 
-    implementation 'com.google.firebase:firebase-auth:21.0.3'
-    implementation 'com.google.firebase:firebase-database:20.0.4'
-
     //이메일 보내기
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0" //코루틴
     implementation files('libs/activation.jar') //이메일1
