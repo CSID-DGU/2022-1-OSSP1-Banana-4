@@ -47,7 +47,7 @@ class SelectImageActivity : AppCompatActivity() {
         binding.Button.setOnClickListener{
             uploadImage()
             //메인 페이지로 이동
-            val intent = Intent(this, MainPageActivity::class.java)
+            val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
             finish()
         }

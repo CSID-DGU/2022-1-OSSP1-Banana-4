@@ -89,7 +89,7 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "학번 형식이 맞지 않습니다", Toast.LENGTH_SHORT).show()
 
             else if(check!=true)
-               Toast.makeText(this, "인증번가 확인되지 않았습니다", Toast.LENGTH_SHORT).show()
+               Toast.makeText(this, "인증번호가 확인되지 않았습니다", Toast.LENGTH_SHORT).show()
 
             //정보란이 입력됬을 때
             else {
@@ -99,8 +99,7 @@ class RegisterActivity : AppCompatActivity() {
                             var user: FirebaseUser? = auth.currentUser
                             var userId: String = user!!.uid
 
-                            databaseReference =
-                                FirebaseDatabase.getInstance().getReference("Users").child(userId)
+                            databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
 
 
 

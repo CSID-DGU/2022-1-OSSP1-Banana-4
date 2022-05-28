@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".Review"
+            android:exported="false"/>
+        <activity
+            android:name=".MyPage"
+            android:exported="false"/>
+        <activity
             android:name=".ChatActivity"
             android:exported="false" />
         <activity

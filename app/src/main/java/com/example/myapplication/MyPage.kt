@@ -50,7 +50,7 @@ class MyPage : AppCompatActivity() {
         // 현재 user의 속성 불러오기
         user.get().addOnSuccessListener { dataSnapshot ->
             // 임시 코드
-            username.text = "Apple"
+            //username.text = "Apple"
 
             // 실제 코드
             username.text = dataSnapshot.child("userNickname").toString()           // 닉네임
@@ -64,10 +64,10 @@ class MyPage : AppCompatActivity() {
 
         // rating_bar 초기화
         // 임시 코드
-        ratingbar.rating = 2f
+        // ratingbar.rating = 2f
 
         // 실제 코드
-        // rating_bar.rating = grade
+        rating_bar.rating = grade
 
         ratingbar.onRatingBarChangeListener
 
@@ -77,17 +77,15 @@ class MyPage : AppCompatActivity() {
 
         reviews.apply{
             // 임시 코드
-            add(ReviewData("- 돈을 너무 늦게 줍니다."))
+            /*add(ReviewData("- 돈을 너무 늦게 줍니다."))
             add(ReviewData("- 주문을 너무 잘 해주셨습니다."))
             add(ReviewData("- 너무 친절해요!"))
             add(ReviewData("- 응답이 너무 느려요.."))
-
+*/
             // 실제 코드
-            /*
             for(i in 0 until reviewList.count()) {
                 add(ReviewData(reviewList[i]))
             }
-            */
             reviewAdapter.reviews = reviews
             reviewAdapter.notifyDataSetChanged()
         }
@@ -98,7 +96,7 @@ class MyPage : AppCompatActivity() {
 
         mates.apply {
             // 임시코드
-            val uri: Uri = Uri.parse("test")
+            /*val uri: Uri = Uri.parse("test")
             add(MateData("", "Apple", uri))
             mateAdapter.listener = object : OnClickListener {
                 override fun btnClick(
@@ -124,10 +122,9 @@ class MyPage : AppCompatActivity() {
                     intent.putExtra("mate_name","Tomato")
                     startActivity(intent)
                 }
-            }
+            }*/
 
-            // 실제 코드
-            /*
+
             for(i in 0 until mateNum) {
                 val mate = FirebaseDatabase.getInstance().getReference("Users").child(mateList[i])
                 var username : String =""
@@ -150,19 +147,17 @@ class MyPage : AppCompatActivity() {
                     }
                 }
             }
-            */
+
             mateAdapter.mates = mates
             mateAdapter.notifyDataSetChanged()
         }
 
-
-        /*
         // 이전으로 가기 버튼 클릭하면 메인 페이지로 이동
         to_main_button.setOnClickListener{
-            val intent = Intent(this, Main::class.java)
+            val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
         }
-        */
+
 
     }
 }

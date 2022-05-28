@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,11 @@ class MainPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
+
+        icon_mypage.setOnClickListener {
+            val intent = Intent(this, MyPage::class.java)
+            startActivity(intent)
+        }
 
         var database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference()

@@ -14,7 +14,7 @@ import com.example.myapplication.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class                                                                                                                                    LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var firebaseUser:FirebaseUser
 
@@ -51,7 +51,7 @@ class                                                                           
                     if(it.isSuccessful){
                         email.setText("")
                         pwd.setText("")
-                        val intent = Intent(this,MainPageActivity::class.java)
+                        val intent = Intent(this,MainPage::class.java)
                         startActivity(intent)
                         finish()
                     }
