@@ -1,10 +1,10 @@
-package com.example.signinup
+package com.example.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.signinup.databinding.ActivityFindPasswordBinding
-import com.example.signinup.databinding.ActivitySelectImageBinding
+import com.example.myapplication.databinding.ActivityFindPasswordBinding
+import com.example.myapplication.databinding.ActivitySelectImageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

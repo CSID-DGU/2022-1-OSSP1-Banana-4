@@ -1,4 +1,5 @@
-package com.example.signinup
+package com.example.myapplication
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -7,13 +8,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.signinup.FindPasswordActivity
-import com.example.signinup.R
-import com.example.signinup.RegisterActivity
+import com.example.myapplication.FindPasswordActivity
+import com.example.myapplication.R
+import com.example.myapplication.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class LoginActivity : AppCompatActivity() {
+class                                                                                                                                    LoginActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var firebaseUser:FirebaseUser
 

@@ -1,14 +1,15 @@
-package com.example.signinup
+package com.example.myapplication
+
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.net.Authenticator
+import java.net.PasswordAuthentication
 import java.util.*
 import javax.mail.*
 import javax.mail.internet.InternetAddress
 import javax.mail.internet.MimeMessage
-import java.security.SecureRandom
-import kotlin.properties.Delegates
 
 class MailSender : Authenticator(){
     // 보내는 사람 이메일과 비밀번호
