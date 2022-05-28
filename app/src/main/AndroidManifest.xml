@@ -3,6 +3,9 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,22 +13,37 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
-
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".categoryPage"
-            android:exported="true" >
-
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".Review"
+            android:exported="false"/>
+        <activity
+            android:name=".MyPage"
+            android:exported="false"/>
+        <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainPage"
+            android:exported="false" />
+        <activity
+            android:name=".SelectImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-
     </application>
 
 </manifest>
