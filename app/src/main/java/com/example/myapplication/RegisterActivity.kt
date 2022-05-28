@@ -1,4 +1,4 @@
-package com.example.signinup
+package com.example.myapplication
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,9 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.Toast
-import com.example.signinup.databinding.ActivityRegisterBinding
-//import com.example.signinup.LoginActivity
-//import com.example.signinup.databinding.ActivityRegisterBinding
+import com.example.myapplication.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
