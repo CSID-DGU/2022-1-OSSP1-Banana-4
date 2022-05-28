@@ -3,8 +3,8 @@ package com.example.myapplication
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.net.Authenticator
-import java.net.PasswordAuthentication
+import javax.mail.Authenticator
+import javax.mail.PasswordAuthentication
 import java.util.*
 import javax.mail.*
 import javax.mail.internet.InternetAddress
