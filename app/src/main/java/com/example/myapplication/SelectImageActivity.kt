@@ -1,4 +1,4 @@
-package com.example.signinup
+package com.example.myapplication
 
 import android.content.Intent
 import android.net.Uri
@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import com.example.signinup.databinding.ActivitySelectImageBinding
+import com.example.myapplication.databinding.ActivitySelectImageBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
