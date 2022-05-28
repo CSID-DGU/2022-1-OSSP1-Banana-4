@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.signinup
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
 import android.widget.Toast
-import com.example.myapplication.databinding.ActivityRegisterBinding
+import com.example.signinup.databinding.ActivityRegisterBinding
 //import com.example.signinup.LoginActivity
 //import com.example.signinup.databinding.ActivityRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -15,11 +15,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    private lateinit var databaseReference: DatabaseReference
+    private lateinit var databaseRef: DatabaseReference
     private lateinit var binding: ActivityRegisterBinding
+    private lateinit var database: FirebaseDatabase
 
     private lateinit var R_btn: Button
     private lateinit var S_btn: Button
@@ -29,7 +31,9 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(R.layout.activity_register)
         binding= ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         auth = Firebase.auth
+        database = FirebaseDatabase.getInstance()
 
         var Authnum=binding.AuthNum
         var Name=binding.Name
@@ -42,14 +46,14 @@ class RegisterActivity : AppCompatActivity() {
         R_btn = findViewById(R.id.register_btn)
         A_btn=findViewById(R.id.Auth_button)
 
-        var userGrade:Float= 0F
-        var reviewNum:Int=0
+        var userGrade:String="" //Float= 0F
+        var reviewNum:String="" //Int=0
         var userReview= mutableListOf<String>()
         var mateList= mutableListOf<String>()
 
-        var reviewMax:Float=0F
-        var reviewSum:Float=0F
-        var reviewMin:Float=0F
+        var reviewMax:String="" //Float=0F
+        var reviewSum:String="" //Float=0F
+        var reviewMin:String="" //Float=0F
 
         val MailFunction=MailSender() // MailSender의 클래스 객체 저장
         var check=false //인증번호가 맞다면 check값을 true로 지정하고 회원가입버튼 클릭시 이를 확인한다
@@ -99,64 +103,43 @@ class RegisterActivity : AppCompatActivity() {
                             var user: FirebaseUser? = auth.currentUser
                             var userId: String = user!!.uid
 
-                            databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(userId)
-
-
-
+                            databaseRef =
+                                FirebaseDatabase.getInstance().getReference().child("Users").child(auth.uid!!)
                             var hashMap: HashMap<String, String> = HashMap()
                             hashMap.put("userId", userId)
                             hashMap.put("userStudentID", StudentID.text.toString())
                             hashMap.put("userName", Name.text.toString())
                             hashMap.put("userNickname", Nickname.text.toString())
                             hashMap.put("userEmail", Email.text.toString())
-                            hashMap.put("userImage", "")//이미지
+                            hashMap.put("userGrade",userGrade)
+                            hashMap.put("reviewMax",reviewMax)
+                            hashMap.put("reviewMin",reviewMin)
+                            hashMap.put("reviewSum",reviewSum)
+                            hashMap.put("userReview",reviewNum)
 
                             var FloatHashMap:HashMap<String,Float> = HashMap() //유저의 평점 관리 해쉬맵
-                            FloatHashMap.put("userGrade",userGrade)
-                            FloatHashMap.put("reviewMax",reviewMax)
-                            FloatHashMap.put("reviewMin",reviewMin)
-                            FloatHashMap.put("reviewSum",reviewSum)
+                            //FloatHashMap.put("userGrade",userGrade)
+                            //FloatHashMap.put("reviewMax",reviewMax)
+                            //FloatHashMap.put("reviewMin",reviewMin)
+                            //FloatHashMap.put("reviewSum",reviewSum)
 
                             var IntHashMap:HashMap<String,Int> =HashMap()
-                            IntHashMap.put("userReview",reviewNum)
+                            //IntHashMap.put("userReview",reviewNum)
 
                             var ListHashMap:HashMap<String,MutableList<String>> = HashMap()
                             ListHashMap.put("userMate",mateList)
                             ListHashMap.put("userReview",userReview)
 
-                            databaseReference.setValue(hashMap).addOnCompleteListener(this) {
-                                if (it.isSuccessful) {
-                                    StudentID.setText("")
-                                    Email.setText("")
-                                    Password.setText("")
-                                    Name.setText("")
-                                    Nickname.setText("")
-                                }
-                            }
-
-                            databaseReference.setValue(FloatHashMap).addOnCompleteListener(this){
+                            databaseRef.setValue(hashMap,ListHashMap).addOnCompleteListener(this){
                                 if(it.isSuccessful){
-                                    userGrade=0F
+                                    val intent = Intent(this, SelectImageActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
                                 }
                             }
-
-                            databaseReference.setValue(IntHashMap).addOnCompleteListener(this){
-                                if(it.isSuccessful)
-                                    reviewNum=0
-                            }
-
-                            databaseReference.setValue(ListHashMap).addOnCompleteListener(this){
-                                if(it.isSuccessful) {
-                                    userReview = mutableListOf<String>()
-                                    mateList= mutableListOf<String>()
-                                }
-                            }
-
-                            //이미지 선택페이지 이동
-                            val intent = Intent(this, SelectImageActivity::class.java)
-                            startActivity(intent)
-                            finish()
                         }
+                        else
+                            Toast.makeText(this, "이미 가입된 계정이 존재합니다", Toast.LENGTH_SHORT).show()
                     }
             }
         }
@@ -193,5 +176,5 @@ class RegisterActivity : AppCompatActivity() {
             else
                 Toast.makeText(this, "인증번호가 맞지 않습니다", Toast.LENGTH_SHORT).show()
         }
-        }
     }
+}
