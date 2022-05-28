@@ -9,12 +9,12 @@
     tools:context=".categoryPage">
 
 
->
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="138dp">
+        android:layout_height="309dp">
 
     </LinearLayout>
 
@@ -31,31 +31,50 @@
         <TextView
 
             android:id="@+id/tv1"
+            android:layout_width="426dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="같이 주문할"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+
+
+        <TextView
+
+            android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="먹고싶은 브랜드를 선택하세요"
-            android:textSize="20dp" />
+            android:text="이름(tv2.text='' '')"
+            android:textColor="@color/black"
+            android:textSize="40dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="님을 찾았어요!"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+
 
         <LinearLayout
             android:layout_width="380dp"
-            android:layout_height="233dp"
+            android:layout_height="87dp"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_marginTop="30dp"
+                android:id="@+id/tv4"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                >
-
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleView"
-                    android:layout_width="276dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                android:text="선호음식(tv4.text='' '')"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -68,13 +87,18 @@
                 android:id="@+id/btn_again"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="다시하기" />
+                android:text="다시 찾기"
+                android:textColor="@color/black"
+                android:backgroundTint="#ffff00"
+                />
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="찾기" />
+                android:text="다른 메뉴 보기"
+                android:textColor="@color/white"
+                android:backgroundTint="#000000"/>
 
             />
         </LinearLayout>
@@ -84,8 +108,4 @@
 
 
 </LinearLayout>
-
-
-
-
 

@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.SparseBooleanArray
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,6 +28,11 @@ class categoryPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
+
+
+
+        val database by lazy { FirebaseDatabase.getInstance() }
+        val userRef = database.getReference("matchingUser")
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
         btn_search.setOnClickListener({
@@ -38,11 +44,16 @@ class categoryPage : AppCompatActivity() {
         btn_again.setOnClickListener({
             val intent=Intent(this, MainActivity::class.java)
             startActivity(intent)
+
+
+            userRef.removeValue() //올라간데이터를삭제해줌
+
+
         })
 
 
         //
-        val database=Firebase.database
+       // val database=Firebase.database
         val myRef = database.getReference("message")
         myRef.setValue("Success")
         //위에 3줄은 테스트용 실시간데이터베이스에 데이터 쓰기코드
@@ -82,8 +93,6 @@ class categoryPage : AppCompatActivity() {
                 text_cate_num: String,
             ) {
 
-                val database by lazy { FirebaseDatabase.getInstance() }
-                val userRef = database.getReference("matchingUser")
 
                 //3개 선택
                 if(checkStatus.get(position,true)){

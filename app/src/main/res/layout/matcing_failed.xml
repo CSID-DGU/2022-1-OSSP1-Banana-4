@@ -9,12 +9,12 @@
     tools:context=".categoryPage">
 
 
->
+    >
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="138dp">
+        android:layout_height="309dp">
 
     </LinearLayout>
 
@@ -31,31 +31,25 @@
         <TextView
 
             android:id="@+id/tv1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="426dp"
+            android:layout_height="129dp"
             android:layout_marginLeft="20dp"
-            android:text="먹고싶은 브랜드를 선택하세요"
-            android:textSize="20dp" />
+            android:text="메이트를\n찾지 못했습니다..."
+            android:textColor="@color/black"
+            android:textSize="40dp" />
 
         <LinearLayout
             android:layout_width="380dp"
-            android:layout_height="233dp"
+            android:layout_height="87dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                >
+                android:orientation="vertical"
 
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycleView"
-                    android:layout_width="276dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+                />
 
         </LinearLayout>
 
@@ -68,13 +62,18 @@
                 android:id="@+id/btn_again"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="다시하기" />
+                android:text="다시 찾기"
+                android:textColor="@color/black"
+                android:backgroundTint="#ffff00"
+                />
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="찾기" />
+                android:text="다른 메뉴 보기"
+                android:textColor="@color/white"
+                android:backgroundTint="#000000"/>
 
             />
         </LinearLayout>
@@ -84,8 +83,4 @@
 
 
 </LinearLayout>
-
-
-
-
 
