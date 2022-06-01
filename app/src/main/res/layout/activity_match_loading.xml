@@ -14,7 +14,7 @@
         <!--
         1. 카테고리 이미지 : ctg_image
         2. message : message
-        3.
+        3. 매칭 그만하기 버튼 : stop_button
         -->
 
         <ImageView
@@ -49,14 +49,25 @@
             android:layout_height="wrap_content"
             android:text="메이트를 찾는 중입니다 . . ."
             android:textColor="@color/black"
-            android:textSize="70px"
+            android:textSize="60px"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.205"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.891" />
+            app:layout_constraintVertical_bias="0.863" />
+
+        <Button
+            android:id="@+id/stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="매칭 그만하기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.959" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
