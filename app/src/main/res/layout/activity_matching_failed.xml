@@ -68,7 +68,7 @@
                 />
 
             <Button
-                android:id="@+id/btn_search"
+                android:id="@+id/btn_back"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
                 android:text="다른 메뉴 보기"
