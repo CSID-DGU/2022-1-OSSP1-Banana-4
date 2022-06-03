@@ -2,6 +2,7 @@ package com.example.myapplication.matching
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -14,7 +15,6 @@ class MatchLoading : AppCompatActivity() {
 
     private lateinit var loading : ImageView
     private lateinit var stopButton: Button
-    private lateinit var waitList: MutableList<WaitUserData>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
