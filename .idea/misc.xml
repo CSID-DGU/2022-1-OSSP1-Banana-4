@@ -6,6 +6,17 @@
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.22685185185185186" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/User/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_user_adapter.xml" value="0.1" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/activity_matching_failed.xml" value="0.1" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/activity_matching_success.xml" value="0.13240740740740742" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/activity_my_page.xml" value="0.13240740740740742" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/brand_name.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/item_review.xml" value="0.16875" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/matching_success.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/matching_username.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/matcing_failed.xml" value="0.1" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/recycleview_matchingdata.xml" value="0.22" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/layout/row_chat.xml" value="0.15052083333333333" />
+        <entry key="..\:/Users/skql2/Documents/GitHub/2022-1-OSSP1-Banana-4/app/src/main/res/xml/brand_name_scene.xml" value="0.16875" />
       </map>
     </option>
   </component>

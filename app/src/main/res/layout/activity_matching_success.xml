@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/banana_background"
+    tools:context=".categoryPage">
+
+
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+
+
+        >
+
+
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+
+
+        <TextView
+
+            android:id="@+id/tv1"
+            android:layout_width="426dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="같이 주문할"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
+            android:layout_width="276dp"
+            android:layout_height="92dp" />
+
+        <TextView
+            android:id="@+id/tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="님을 찾았어요!"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/btn_again"
+                android:layout_width="112dp"
+                android:layout_height="65dp"
+                android:text="다시 찾기"
+                android:textColor="@color/black"
+                android:backgroundTint="#ffff00"
+                />
+
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="112dp"
+                android:layout_height="65dp"
+                android:text="다른 메뉴 보기"
+                android:textColor="@color/white"
+                android:backgroundTint="#000000"/>
+
+            />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
+

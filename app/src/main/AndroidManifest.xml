@@ -15,11 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".MatchingSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".MatchingFailed"
+            android:exported="false" />
+        <activity
             android:name=".Review"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MyPage"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ChatActivity"
             android:exported="false" />
@@ -35,13 +41,12 @@
         <activity
             android:name=".FindPasswordActivity"
             android:exported="false" />
-        <activity 
+        <activity
             android:name=".categoryPage"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
-            
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
