@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp">
+        android:layout_height="194dp">
 
     </LinearLayout>
 
@@ -43,6 +43,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleView"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_width="276dp"
             android:layout_height="92dp" />
 
@@ -65,19 +67,19 @@
             android:gravity="center">
 
             <Button
-                android:id="@+id/btn_again"
+                android:id="@+id/btn_done"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="다시 찾기"
+                android:text="채팅시작"
                 android:textColor="@color/black"
                 android:backgroundTint="#ffff00"
                 />
 
             <Button
-                android:id="@+id/btn_search"
+                android:id="@+id/btn_back"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="다른 메뉴 보기"
+                android:text="뒤로가기"
                 android:textColor="@color/white"
                 android:backgroundTint="#000000"/>
 
