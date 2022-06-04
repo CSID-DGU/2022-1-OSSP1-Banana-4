@@ -68,13 +68,16 @@
                 android:id="@+id/btn_again"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
+                android:backgroundTint="#ffff00"
                 android:text="다시하기" />
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="찾기" />
+                android:text="찾기"
+                android:textColor="@color/white"
+                android:backgroundTint="#000000"/>
 
             />
         </LinearLayout>

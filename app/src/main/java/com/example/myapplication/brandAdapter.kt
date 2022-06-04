@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.core.Context
 import kotlinx.android.synthetic.main.activity_category.view.*
 import kotlinx.android.synthetic.main.brand_name.view.*
 
-class brandAdapter() : RecyclerView.Adapter<brandAdapter.ViewHolder>() {
+class brandAdapter(private val context: categoryPage) : RecyclerView.Adapter<brandAdapter.ViewHolder>() {
     var brandList = mutableListOf<Brand>()
 
     lateinit var listener : OnBrandClickListener

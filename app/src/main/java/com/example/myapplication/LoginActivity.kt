@@ -13,6 +13,7 @@ import com.example.myapplication.R
 import com.example.myapplication.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.brand_name.*
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
@@ -72,7 +73,6 @@ class LoginActivity : AppCompatActivity() {
         btn_findpwd.setOnClickListener{
             //val intent=Intent(this, FindPasswordActivity::class.java)
             val intent=Intent(this, categoryPage::class.java)
-
             startActivity(intent)
         }
     }

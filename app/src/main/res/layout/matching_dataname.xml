@@ -23,15 +23,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="30dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/userfav"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="선호:"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
             <TextView
                 android:id="@+id/userbrand"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:layout_marginLeft="10dp"
-                android:textSize="30dp"
-                />
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+            android:id="@+id/userbrand2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+            android:id="@+id/userbrand3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginLeft="10dp"
+            android:textSize="20dp"
+                android:textColor="@color/black"/>
 
 
 

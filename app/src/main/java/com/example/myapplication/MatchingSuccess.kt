@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_matching_success.*
 
 class MatchingSuccess : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,10 +25,15 @@ class MatchingSuccess : AppCompatActivity() {
             startActivity(intent)
         })
 
+        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        recycleView_m.layoutManager=layoutManager
 
+        val adapter=MatchingAdapter()
+        adapter.items.add(MatchingData("매칭1","냠1","냠냠2"))
+        adapter.items.add(MatchingData("매칭2","냠3",""))
+        //매칭알고리즘만든후 유저데려오기
 
-
-
+        recycleView_m.adapter=adapter
 
 
     }

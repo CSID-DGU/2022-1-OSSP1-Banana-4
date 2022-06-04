@@ -29,7 +29,11 @@ class MatchingAdapter: RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
 
         fun setItem(item:MatchingData){
             itemView.username.text=item.name
+            itemView.userfav.text="님 선호:"
             itemView.userbrand.text=item.brand
+            itemView.userbrand2.text=item.brand2
+            itemView.userbrand3.text=item.brand3
+
         }
     }
 

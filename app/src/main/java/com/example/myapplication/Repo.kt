@@ -10,6 +10,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 class Repo {
     fun getData(): LiveData<MutableList<Brand>> {
+
         val mutableData = MutableLiveData<MutableList<Brand>>()
         lateinit var databaseReference: DatabaseReference
 

@@ -52,24 +52,27 @@ class categoryPage : AppCompatActivity() {
 
         val btn_again=findViewById<Button>(R.id.btn_again) //다시하기버튼 메인페이지로
         btn_again.setOnClickListener({
+            databaseReference.child("matching").child(user_id).removeValue() //올라간데이터를삭제해줌
+
             val intent=Intent(this, MainPage::class.java)
             startActivity(intent)
-            databaseReference.child("matching").child(user_id).removeValue() //올라간데이터를삭제해줌
         })
 
+        val adapter = brandAdapter(this)
 
         val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
         recycleView.layoutManager = layoutManager
 
-        val adapter = brandAdapter()
         recycleView.adapter=adapter
 
 
 
-        adapter.brandList.add(Brand("피자에땅","피자","0","6"))
-        adapter.brandList.add(Brand("피자냠","피자","0","6"))
-        adapter.brandList.add(Brand("피자헛","피자","0","6"))
-        adapter.brandList.add(Brand("파파존스","피자","0","6"))
+
+//
+//        adapter.brandList.add(Brand("피자에땅","피자","0","6"))
+//        adapter.brandList.add(Brand("피자냠","피자","0","6"))
+//        adapter.brandList.add(Brand("피자헛","피자","0","6"))
+//        adapter.brandList.add(Brand("파파존스","피자","0","6"))
 
 //데이터읽기가 안되서 하드코딩으로 일단 했습니다 원래면 repo 페이지에서 가져오게됨
 // https://gloria94.tistory.com/19 참고블로그
