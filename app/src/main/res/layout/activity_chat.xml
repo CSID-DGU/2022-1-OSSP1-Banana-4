@@ -74,7 +74,6 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="텍스트를 입력해주세요"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/chat_submit_button"
         app:layout_constraintHorizontal_bias="0.6"

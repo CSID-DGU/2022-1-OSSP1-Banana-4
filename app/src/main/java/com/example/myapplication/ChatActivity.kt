@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.android.synthetic.main.row_chat.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class ChatActivity : AppCompatActivity() {
     private val adapter = CharAdapter()
@@ -18,6 +21,7 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+
         var auth = FirebaseAuth.getInstance()
 
         if(auth.currentUser != null){
@@ -25,15 +29,28 @@ class ChatActivity : AppCompatActivity() {
             println(photo_url)
         }
 
-        nickname = "홍연주"
-        chatNum = "1"
+        //이름 채팅방 설정
+        //이거는 매칭 화면에서 정보를 넣어주면 됨
+        nickname = "이지호"
+        chatNum = "0"
+
         var database = FirebaseDatabase.getInstance()
         myRef = database.getReference("message").child(chatNum).child("contents")
 
+
+        //입력 했을 때
         chat_submit_button.setOnClickListener {
             addChat(chat_inputBox.text.toString(),nickname)
+            chat_inputBox.setText("")
         }
 
+        //뒤로 가기 버튼
+        chat_back_button.setOnClickListener {
+            val intent = Intent(this, MainPage::class.java)
+            startActivity(intent)
+        }
+
+        //여기서 작성했던 채팅 목록들 가져옴
         myRef.addChildEventListener(object : ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 var dataHash = snapshot.getValue() as HashMap<String, String>
@@ -59,12 +76,21 @@ class ChatActivity : AppCompatActivity() {
         })
 
 
-        //유저 정보를 자동으로 가져와서 넣어줭
+        //adapter 설정
+        adapter.context = this
         adapter.myNickname = nickname
         //adapter.itemList.add(ChatData("안녕!", "nick1"))
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         chat_recyclerView.layoutManager = layoutManager
         chat_recyclerView.adapter = adapter
+
+
+        //시간 설정
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH시 mm분")
+        val formatted = current.format(formatter)
+
+        chat_date_textView.text = formatted
     }
 
     fun addChat(msg:String?, nickname:String?){
