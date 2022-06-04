@@ -18,7 +18,7 @@ class Repo {
         //databaseReference.child("categories").child(id).child(category)
 
         val myRef = database.getReference("resData")
-        myRef.addValueEventListener(object : ValueEventListener {
+        databaseReference.addValueEventListener(object : ValueEventListener {
             val listData: MutableList<Brand> = mutableListOf<Brand>()
             override fun onDataChange(snapshot: DataSnapshot) {
 

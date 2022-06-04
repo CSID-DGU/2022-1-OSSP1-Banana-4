@@ -7,20 +7,16 @@ import android.os.Bundle
 import android.util.SparseBooleanArray
 import android.view.View
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.adapters.NumberPickerBindingAdapter.setValue
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.brand_name.*
-import java.lang.reflect.Member
-import java.sql.Types.NULL
 
 class categoryPage : AppCompatActivity() {
     private lateinit var adapter: brandAdapter
@@ -34,14 +30,14 @@ class categoryPage : AppCompatActivity() {
         setContentView(R.layout.activity_category)
 
 
-        val uid = auth.currentUser?.uid.toString()
-        val user = FirebaseDatabase.getInstance().getReference("Users").child(uid)
+//        val uid = auth.currentUser?.uid.toString()
+//        val user = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
         var user_id="id"
-        user.get().addOnSuccessListener { dataSnapshot ->
-            user_id = dataSnapshot.child("userNickname").toString()
-        }
-
+//        user.get().addOnSuccessListener { dataSnapshot ->
+//            user_id = dataSnapshot.child("userNickname").toString()
+//        }
+//
 
 
         var database = FirebaseDatabase.getInstance();
@@ -70,12 +66,10 @@ class categoryPage : AppCompatActivity() {
 
 
 
-//        adapter.brandList.add(Brand("피자에땅","피자",0,6))
-//        adapter.brandList.add(Brand("피자헛","피자",1))
-//        adapter.brandList.add(Brand("피자에땅","피자",0))
-//        adapter.brandList.add(Brand("피자헛","피자",1))
-//        adapter.brandList.add(Brand("피자에땅","피자",0))
-//        adapter.brandList.add(Brand("상관없음","피자",1))
+        adapter.brandList.add(Brand("피자에땅","피자","0","6"))
+        adapter.brandList.add(Brand("피자냠","피자","0","6"))
+        adapter.brandList.add(Brand("피자헛","피자","0","6"))
+        adapter.brandList.add(Brand("파파존스","피자","0","6"))
 
 //데이터읽기가 안되서 하드코딩으로 일단 했습니다 원래면 repo 페이지에서 가져오게됨
 // https://gloria94.tistory.com/19 참고블로그
@@ -105,11 +99,13 @@ class categoryPage : AppCompatActivity() {
                         view.setBackgroundColor(Color.YELLOW)
                         count++
 
-                        databaseReference.child("matching").child(user_id).setValue(text_name)
-                        databaseReference.child("matching").child(user_id).setValue(text_cate)
-                        databaseReference.child("matching").child(user_id).setValue(text_cate_num)
-                        databaseReference.child("matching").child(user_id).setValue(user_id)
+                        var text=text_name
+                        var cate=text_cate
+                        var cate_num=text_cate_num
+                        var num=text_num
 
+                        val data =Brand(text as String, cate as String,cate_num,num)
+                        databaseReference.child("matching").child(user_id).child(count.toString()).setValue(data)
 
                         // 매칭을 위해 실시간데이터의 matchingUser데이터에 카테고리정보를 넣어줍니다
                         // 유저정보도 같이 넣어야하는데 일단 브랜드이름, 카테고리, 숫자만 함
@@ -120,9 +116,9 @@ class categoryPage : AppCompatActivity() {
                 else{ //true 처음엔 true상태
                     if (view != null) {
                         view.setBackgroundColor(Color.WHITE)
-                        count--
-                        databaseReference.child("matching").child(user_id).removeValue() //올라간데이터를삭제해줌
 
+                        databaseReference.child("matching").child(user_id).child(count.toString()).removeValue() //올라간데이터를삭제해줌
+                        count--
                         checkStatus.put(position,true)
                     }
                 }

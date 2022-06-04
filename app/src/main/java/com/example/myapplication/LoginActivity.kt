@@ -70,7 +70,9 @@ class LoginActivity : AppCompatActivity() {
         }
 
         btn_findpwd.setOnClickListener{
-            val intent=Intent(this, FindPasswordActivity::class.java)
+            //val intent=Intent(this, FindPasswordActivity::class.java)
+            val intent=Intent(this, categoryPage::class.java)
+
             startActivity(intent)
         }
     }
