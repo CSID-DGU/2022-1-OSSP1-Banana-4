@@ -3,27 +3,43 @@ package com.example.myapplication
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_main_page.*
+import kotlinx.android.synthetic.main.row_chat.*
 
 class ChatActivity : AppCompatActivity() {
+    private val adapter = CharAdapter()
+    lateinit var nickname: String
+    lateinit var chatNum: String
+    lateinit var myRef: DatabaseReference
+    lateinit var photo_url:String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
+        var auth = FirebaseAuth.getInstance()
 
+        if(auth.currentUser != null){
+            photo_url = auth.currentUser!!.photoUrl.toString()
+            println(photo_url)
+        }
+
+        nickname = "홍연주"
+        chatNum = "1"
         var database = FirebaseDatabase.getInstance()
-        var myRef = database.getReference("message")
+        myRef = database.getReference("message").child(chatNum).child("contents")
 
-        myRef.setValue("test")
+        chat_submit_button.setOnClickListener {
+            addChat(chat_inputBox.text.toString(),nickname)
+        }
 
         myRef.addChildEventListener(object : ChildEventListener{
-
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-
+                var dataHash = snapshot.getValue() as HashMap<String, String>
+                println(dataHash)
+                adapter.itemList.add(ChatData(dataHash["msg"], dataHash["nickname"]))
+                chat_recyclerView.adapter = adapter
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -42,10 +58,20 @@ class ChatActivity : AppCompatActivity() {
             }
         })
 
-        val adapter = CharAdapter()
-        adapter.myNickname = "nick1"
+
+        //유저 정보를 자동으로 가져와서 넣어줭
+        adapter.myNickname = nickname
+        //adapter.itemList.add(ChatData("안녕!", "nick1"))
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        recyclerView2.layoutManager = layoutManager
-        recyclerView2.adapter = adapter
+        chat_recyclerView.layoutManager = layoutManager
+        chat_recyclerView.adapter = adapter
+    }
+
+    fun addChat(msg:String?, nickname:String?){
+        var chatdata:ChatData = ChatData(msg, nickname)
+
+        if (msg != null && !msg.equals("")){
+            myRef.child(adapter.itemList.size.toString()).setValue(chatdata)
+        }
     }
 }

@@ -27,10 +27,10 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun setItem(item: ChatData):Unit{
-            itemView.chat_msg.text = item.getMeassege()
-            itemView.chat_nickname.text = item.getNickName()
+            itemView.chat_msg.text = item.msg
+            itemView.chat_nickname.text = item.nickname
 
-            if(item.getNickName().equals(myNickname)){
+            if(item.nickname.equals(myNickname)){
                 itemView.chat_msg.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END)
                 itemView.chat_nickname.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_END)
             }

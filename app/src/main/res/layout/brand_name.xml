@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:layoutDescription="@xml/brand_name_scene">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,8 +13,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
 
             <TextView
@@ -23,33 +21,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textSize="15dp"/>
+                android:textSize="15dp" />
+
             <TextView
                 android:id="@+id/cate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:layout_marginLeft="10dp"
+                android:text="TextView"
                 android:textSize="15dp"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:layout_marginLeft="10dp"
+                android:text="TextView"
 
                 android:textSize="15dp"
-                android:visibility="gone"
-                />
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/cate_num"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
                 android:layout_marginLeft="10dp"
+                android:text="TextView"
 
                 android:textSize="15dp"
                 android:visibility="gone"
