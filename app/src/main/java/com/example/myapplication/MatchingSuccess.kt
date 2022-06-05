@@ -15,7 +15,7 @@ class MatchingSuccess : AppCompatActivity() {
 
         val btn_back=findViewById<Button>(R.id.btn_back) //뒤로가기버튼
         btn_back.setOnClickListener({
-            val intent= Intent(this, categoryPage::class.java) //다른 메뉴 찾아보기
+            val intent= Intent(this, CategoryPage::class.java) //다른 메뉴 찾아보기
             startActivity(intent)
         })
 

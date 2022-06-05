@@ -11,6 +11,9 @@ import com.google.firebase.ktx.Firebase
 class Repo {
     fun getData(): LiveData<MutableList<Brand>> {
 
+        // https://gloria94.tistory.com/19 참고블로그
+
+
         val mutableData = MutableLiveData<MutableList<Brand>>()
         lateinit var databaseReference: DatabaseReference
 
@@ -18,7 +21,7 @@ class Repo {
         databaseReference = database.getReference()
         //databaseReference.child("categories").child(id).child(category)
 
-        val myRef = database.getReference("resData")
+        val myRef = database.getReference("Matching")
         databaseReference.addValueEventListener(object : ValueEventListener {
             val listData: MutableList<Brand> = mutableListOf<Brand>()
             override fun onDataChange(snapshot: DataSnapshot) {

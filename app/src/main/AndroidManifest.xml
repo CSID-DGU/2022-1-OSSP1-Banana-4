@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".activity_main2"
+            android:exported="false" />
+        <activity
             android:name=".MatchingSuccess"
             android:exported="false" />
         <activity
@@ -42,7 +45,7 @@
             android:name=".FindPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".categoryPage"
+            android:name=".CategoryPage"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
