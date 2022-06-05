@@ -98,14 +98,58 @@ class CategoryPage : AppCompatActivity() {
 
         //#############################카테고리불러오기###########//
         userReference=database.getReference("resData")
+        var i=0
         userReference.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
-                val test= snapshot.child("0").child("name").value as String
+                for (ds in snapshot.children){
+                    val test= snapshot.child(i.toString())
 
-                tt.text= test.toString()
-                adapter.brandList.add(Brand(test,"피자","0","5"))
-                adapter.brandList.add(Brand("test","피자","0","5"))
 
+                    for (es in test.children){
+                        Log.e("snap",es.toString())
+                        Log.d("snap","번째"+i)
+
+
+                    }
+                    i++
+
+                    when{
+                        "0".equals(ds.child("cate_num"))->{
+                            val name: DataSnapshot =ds.child("name")
+                            adapter.brandList.add(Brand(name.toString(),"피자","0","5"))
+                            adapter.brandList.add(Brand("ㅇㅅㅇ","피자","0","5"))
+
+                        }
+
+                    }
+
+                }
+
+
+
+
+
+//               // val test= snapshot.child("0").child("name").value as String
+//                val test2= snapshot.child("0").child("cate_num").value as String
+//                val name=snapshot.child("0").child("name").value as String
+//
+//               // adapter.brandList.add(Brand("test","피자","0","5"))
+//
+////
+//                  adapter.brandList.add(Brand(name,"피자","0",test2))
+
+
+ //                    for (ds in snapshot.children){
+////                    when{
+////                        "0".equals(ds.key)->{
+////                            val zero=snapshot.child("0")
+////                            for(item in zero.children){
+////                                val id=item.key.toString()
+////                                val filename=item.child("filename").value as String
+////                                //tt.text=filename
+////                            }
+////                        }
+////                    }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -169,13 +213,13 @@ class CategoryPage : AppCompatActivity() {
 
                         text= text_name.toString()
                         cate= text_cate.toString()
-                        var cate_num= text_cate_num
-                        var num= text_num
+                        cate_num= text_cate_num.toString()
+                        num= text_num.toString()
 
 
 
-                        val data =Brand(text as String, cate as String,cate_num as String,
-                            num as String,userid as String,grade as String)
+                        val data =Brand(text, cate,cate_num ,
+                            num ,userid,grade )
                         databaseReference.child("matching").child(userid).child(count.toString()).setValue(data)
 
                         // 매칭을 위해 실시간데이터의 matchingUser데이터에 카테고리정보를 넣어줍니다
@@ -215,3 +259,4 @@ class CategoryPage : AppCompatActivity() {
     }
 
 }
+
