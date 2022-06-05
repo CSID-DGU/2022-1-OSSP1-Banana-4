@@ -2,7 +2,6 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.util.SparseBooleanArray
@@ -10,9 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.NonNull
-import androidx.core.content.ContextCompat.startActivity
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_category.view.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.brand_name.*
-import org.w3c.dom.Text
 
 class CategoryPage : AppCompatActivity() {
     private lateinit var adapter: BrandAdapter
@@ -42,12 +38,81 @@ class CategoryPage : AppCompatActivity() {
 
         var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
         var grade="3.5"
-
+        val tt:TextView =findViewById(R.id.tv11)
 
         var database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference()
 
-        userReference=database.getReference()
+//        userReference=database.getReference("categories")
+//
+//        userReference.addValueEventListener(object :ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//               // val test= snapshot.child("0").child("filename").value as String
+//                val test= snapshot.child("0")
+//
+//                tt.text= test.toString()
+//                for (ds in test.children){
+//                    Log.e("snap",ds.toString())
+//                    }
+//
+//
+////                for (ds in snapshot.children){
+////                    when{
+////                        "0".equals(ds.key)->{
+////                            val zero=snapshot.child("0")
+////                            for(item in zero.children){
+////                                val id=item.key.toString()
+////                                val filename=item.child("filename").value as String
+////                                //tt.text=filename
+////                            }
+////                        }
+////                    }
+//
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                TODO("Not yet implemented")
+//            }
+//        })
+
+        //가져오기는 성공했음..!
+
+        adapter = BrandAdapter(this)
+
+        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        var  recycleView:RecyclerView= findViewById(R.id.recycleView)
+
+        recycleView.layoutManager = layoutManager
+
+        recycleView.adapter=adapter
+
+
+        adapter.brandList.add(Brand("피자에땅","피자","0","5"))
+        adapter.brandList.add(Brand("피자2","피자","0","5"))
+
+        adapter.brandList.add(Brand("피자에3","피자","0","5"))
+
+        adapter.brandList.add(Brand("피자4","피자","0","5"))
+
+
+
+        //#############################카테고리불러오기###########//
+        userReference=database.getReference("resData")
+        userReference.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val test= snapshot.child("0").child("name").value as String
+
+                tt.text= test.toString()
+                adapter.brandList.add(Brand(test,"피자","0","5"))
+                adapter.brandList.add(Brand("test","피자","0","5"))
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+        //####################################//
 
 
 
@@ -66,32 +131,18 @@ class CategoryPage : AppCompatActivity() {
             startActivity(intent)
         })
 
-        adapter = BrandAdapter(this)
-
-        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-       var  recycleView:RecyclerView= findViewById(R.id.recycleView)
-
-        recycleView.layoutManager = layoutManager
-
-        recycleView.adapter=adapter
-
-
-
 
 //
-        adapter.brandList.add(Brand("피자에땅","피자","0","5"))
-        adapter.brandList.add(Brand("피자2","피자","0","5"))
-
-        adapter.brandList.add(Brand("피자에3","피자","0","5"))
-
-        adapter.brandList.add(Brand("피자4","피자","0","5"))
 
 //데이터읽기가 안되서 하드코딩으로 일단 했습니다 원래면 repo 페이지에서 가져오게됨
 // https://gloria94.tistory.com/19 참고블로그
 // 구현필요한거: 카테고리선택페이지에서 선택한 카테고리에 해당하는 목록을 가져오게해야함!
 //
 //
-
+        var text:String
+        var cate:String
+        var cate_num:String
+        var num:String
 
         var count=0 //브랜드 최대 3개선택
 
@@ -116,8 +167,8 @@ class CategoryPage : AppCompatActivity() {
                         view.setBackgroundColor(Color.YELLOW)
                         count++
 
-                        var text= text_name
-                        var cate= text_cate
+                        text= text_name.toString()
+                        cate= text_cate.toString()
                         var cate_num= text_cate_num
                         var num= text_num
 

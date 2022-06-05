@@ -21,19 +21,24 @@ class Repo {
         databaseReference = database.getReference()
         //databaseReference.child("categories").child(id).child(category)
 
-        val myRef = database.getReference("Matching")
+        val myRef = database.getReference("matching")
         databaseReference.addValueEventListener(object : ValueEventListener {
             val listData: MutableList<Brand> = mutableListOf<Brand>()
             override fun onDataChange(snapshot: DataSnapshot) {
 
-
                 if (snapshot.exists()){
                     for (userSnapshot in snapshot.children){
-                        val getData = userSnapshot.getValue(Brand::class.java)
-                        listData.add(getData!!)
+                        val name= snapshot.child("0").child("name").value as String
+                        listData.add(Brand(name)!!)
 
                         mutableData.value = listData
                     }
+//                    for (userSnapshot in snapshot.children){
+//                        val getData = userSnapshot.getValue(Brand::class.java)
+//                        listData.add(getData!!)
+//
+//                        mutableData.value = listData
+//                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {
