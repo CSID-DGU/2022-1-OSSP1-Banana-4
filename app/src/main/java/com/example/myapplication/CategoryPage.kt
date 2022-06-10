@@ -59,14 +59,17 @@ class CategoryPage : AppCompatActivity() {
 
         databaseReference.child("matching").child(userid).removeValue() //유저데이터초기화
 
-        adapter.brandList.add(Brand("피자에땅","피자","240","13"))
 
 
         //#############################카테고리불러오기###########//
         userReference=database.getReference("resData")
 
         var i=0
-        val resCate="9"
+        val resCate="9"  //가져오기
+        val rescateName="임시"
+        adapter.brandList.add(Brand("상관없음",rescateName,"240",resCate))
+
+
         userReference.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (ds in snapshot.children) {

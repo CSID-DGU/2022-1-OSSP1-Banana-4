@@ -31,8 +31,6 @@ class BrandAdapter(private val context: CategoryPage) : RecyclerView.Adapter<Bra
     }
 
     override fun onBindViewHolder(holder: BrandAdapter.ViewHolder, position: Int) {
-//        val item = brandList[position]
-//        holder.setItem(item)
 
         val item: Brand=brandList[position]
         holder.name.text=item.name
@@ -71,16 +69,6 @@ class BrandAdapter(private val context: CategoryPage) : RecyclerView.Adapter<Bra
 
         }
 
-
-//        fun setItem(item:Brand){
-//            itemView.name.text= item.name
-//            itemView.cate.text=item.cate
-//            itemView.num.text= item.num
-//            itemView.cate_num.text= item.cate_num
-//            itemView.userid.text=item.userid
-//            itemView.grade.text= item.grade
-//
-//        }
 
     }
 
