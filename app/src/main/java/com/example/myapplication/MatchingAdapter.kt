@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.brand_name.view.*
 import kotlinx.android.synthetic.main.matching_dataname.view.*
 
-class MatchingAdapter: RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
+class MatchingAdapter(matchingSuccess: MatchingSuccess) : RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
 
     val items=ArrayList<MatchingData>()
 
@@ -30,7 +30,7 @@ class MatchingAdapter: RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
         fun setItem(item:MatchingData){
             itemView.username.text=item.name
             itemView.userfav.text="님 선호:"
-            itemView.userbrand.text=item.brand
+            itemView.userbrand.text=item.brand1
             itemView.userbrand2.text=item.brand2
             itemView.userbrand3.text=item.brand3
 

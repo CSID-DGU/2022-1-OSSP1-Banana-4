@@ -40,7 +40,7 @@ class CategoryPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
-       
+
 
         var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
         var grade="3.5"
@@ -59,7 +59,7 @@ class CategoryPage : AppCompatActivity() {
 
         databaseReference.child("matching").child(userid).removeValue() //유저데이터초기화
 
-        //adapter.brandList.add(Brand("피자에땅","피자","240","13"))
+        adapter.brandList.add(Brand("피자에땅","피자","240","13"))
 
 
         //#############################카테고리불러오기###########//
