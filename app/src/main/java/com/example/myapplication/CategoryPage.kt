@@ -100,7 +100,7 @@ class CategoryPage : AppCompatActivity() {
 
         val rescateName=value.toString()
 
-        adapter.brandList.add(Brand("상관없음","240","240","240"))
+        adapter.brandList.add(Brand("상관없음","0","0","0"))
 
 
         userReference.addValueEventListener(object :ValueEventListener {
