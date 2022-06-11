@@ -11,13 +11,14 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_matching_success.*
 
 class MatchingSuccess : AppCompatActivity() {
-    private lateinit var adapter: MatchingAdapter
 
     lateinit var databaseReference: DatabaseReference
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,12 +26,19 @@ class MatchingSuccess : AppCompatActivity() {
 
         var database = FirebaseDatabase.getInstance();
 
-        adapter=MatchingAdapter (this)
 
+        databaseReference=database.getReference("MatchingUsers")
+
+
+
+
+        //##유저불러오기
+        var i=0
 
 
         val btn_back=findViewById<Button>(R.id.btn_back) //뒤로가기버튼
         btn_back.setOnClickListener({
+
             val intent= Intent(this, CategoryPage::class.java) //다른 메뉴 찾아보기
             startActivity(intent)
         })
@@ -40,65 +48,6 @@ class MatchingSuccess : AppCompatActivity() {
             val intent= Intent(this, MainPage::class.java) //다시 매칭시도
             startActivity(intent)
         })
-
-        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        recycleView_m.layoutManager=layoutManager
-
-        val adapter=MatchingAdapter(this)
-
-        databaseReference=database.getReference("MatchingUsers")
-
-        adapter.items.add(MatchingData("매칭1","냠1","냠냠2"))
-        //매칭알고리즘만든후 유저데려오기
-
-        recycleView_m.adapter=adapter
-
-
-
-        //##유저불러오기
-        var i=0
-        databaseReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (ds in snapshot.children) {
-                    val test = snapshot.child(i.toString())
-
-                    //for (es in test.children) {
-                        val data= MatchingData(
-                            test.child("name").value.toString(),
-                            test.child("brand1").value.toString(),
-                            test.child("brand2").value.toString(),
-                            test.child("brand3").value.toString()
-                        )
-                       // if (es.key.toString()=="name")
-                            adapter.items.add(data)
-                            Log.e("snap",data.toString())
-
-                    //}
-
-                    i++
-
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-        //#############################카테고리불러오기끝###########//
-
-        adapter.listener = object: OnMatchingListener {
-            override fun onItemClick(
-                holder: MatchingAdapter.ViewHolder,
-                view: View?,
-                position: Int,
-                text_name: CharSequence
-            ) {
-
-                showToast("123")
-
-            }
-        }
 
     }
     fun showToast(message: String){

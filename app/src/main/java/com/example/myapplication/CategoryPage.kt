@@ -73,12 +73,6 @@ class CategoryPage : AppCompatActivity() {
            }
        })
 
-        Log.e("check",waitUserNum.toString())
-
-//        databaseReference.child("WaitUsers").child("List")
-//            .child(waitUserNum.toString()).removeValue() //유저데이터초기화
-
-
 
         //#############################카테고리불러오기###########//
         userReference=database.getReference("resData")
@@ -133,8 +127,6 @@ class CategoryPage : AppCompatActivity() {
                     }
                     i++
                 }
-
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -169,11 +161,10 @@ class CategoryPage : AppCompatActivity() {
             databaseReference.child("WaitUsers").child("List")
                 .child(waitUserNum.toString()).removeValue() //유저데이터초기화
             //waitUserNum--
-            val intent=Intent(this, LoginActivity::class.java)
+            val intent=Intent(this, MainPage::class.java)
             startActivity(intent)
 
         })
-
 
 
         var text:String
@@ -200,8 +191,6 @@ class CategoryPage : AppCompatActivity() {
                 text_grade: CharSequence
             ) {
 
-              
-
                 //3개 선택
                 if(checkStatus.get(position,true)){
                     if (count <3 &&view != null) {
@@ -213,10 +202,6 @@ class CategoryPage : AppCompatActivity() {
                         cate_num= text_cate_num.toString()
                         num= text_num.toString()
 
-
-
-//                        val data =Brand(text, cate,cate_num ,
-//                            num ,userid,grade )
 
                         var i=0
                         var temp="0"
@@ -257,8 +242,6 @@ class CategoryPage : AppCompatActivity() {
             }
         }
     }
-
-
 
     fun showToast(message: String){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
