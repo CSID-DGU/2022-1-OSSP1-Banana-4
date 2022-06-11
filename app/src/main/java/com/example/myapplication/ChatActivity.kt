@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.row_chat.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -16,28 +17,37 @@ class ChatActivity : AppCompatActivity() {
     lateinit var nickname: String
     lateinit var chatNum: String
     lateinit var myRef: DatabaseReference
-    lateinit var photo_url:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
 
-        var auth = FirebaseAuth.getInstance()
 
-        if(auth.currentUser != null){
-            photo_url = auth.currentUser!!.photoUrl.toString()
-            println(photo_url)
+        val user = Firebase.auth.currentUser
+        user?.let {
+            for (profile in it.providerData) {
+                // Id of the provider (ex: google.com)
+                val providerId = profile.providerId
+
+                // UID specific to the provider
+                val uid = profile.uid
+
+                // Name, email address, and profile photo Url
+                val name = profile.displayName
+                val email = profile.email
+                val photoUrl = profile.photoUrl
+                adapter.myImage = photoUrl.toString()
+            }
         }
 
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "이지호"
+        nickname = "김효정"
         chatNum = "0"
 
         var database = FirebaseDatabase.getInstance()
         myRef = database.getReference("message").child(chatNum).child("contents")
-
-
+        //database.getReference("message").child(chatNum).child("images").child("nick1").setValue("~~.png")
         //입력 했을 때
         chat_submit_button.setOnClickListener {
             addChat(chat_inputBox.text.toString(),nickname)
@@ -50,17 +60,23 @@ class ChatActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //나가기 버터느
+        chat_quit_button.setOnClickListener {
+            database.getReference("message").child(chatNum).removeValue()
+        }
+
         //여기서 작성했던 채팅 목록들 가져옴
         myRef.addChildEventListener(object : ChildEventListener{
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 var dataHash = snapshot.getValue() as HashMap<String, String>
-                println(dataHash)
-                adapter.itemList.add(ChatData(dataHash["msg"], dataHash["nickname"]))
+                adapter.itemList.add(ChatData(dataHash["msg"], dataHash["nickname"], dataHash["time"]))
                 chat_recyclerView.adapter = adapter
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
+                var dataHash = snapshot.getValue() as HashMap<String, String>
+                //adapter.itemList.clear()
+                //chat_recyclerView.adapter = adapter
             }
 
             override fun onChildRemoved(snapshot: DataSnapshot) {
@@ -74,7 +90,6 @@ class ChatActivity : AppCompatActivity() {
 
             }
         })
-
 
         //adapter 설정
         adapter.context = this
@@ -94,7 +109,11 @@ class ChatActivity : AppCompatActivity() {
     }
 
     fun addChat(msg:String?, nickname:String?){
-        var chatdata:ChatData = ChatData(msg, nickname)
+        val current = LocalDateTime.now()
+        val formatter = DateTimeFormatter.ofPattern("h:mm a")
+        val formatted = current.format(formatter)
+        var chatdata:ChatData = ChatData(msg, nickname, formatted)
+
 
         if (msg != null && !msg.equals("")){
             myRef.child(adapter.itemList.size.toString()).setValue(chatdata)

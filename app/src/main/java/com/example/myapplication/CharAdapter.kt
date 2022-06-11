@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.marginRight
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_register.view.*
 import kotlinx.android.synthetic.main.row_chat.view.*
 import java.time.LocalDateTime
@@ -18,6 +19,7 @@ import java.time.format.DateTimeFormatter
 
 class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
     var itemList = ArrayList<ChatData>()
+    var myImage = "https://bit.ly/2V1ipNj"
     var myNickname = ""
     lateinit var context: ChatActivity
 
@@ -38,13 +40,9 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun setItem(item: ChatData):Unit{
-            val current = LocalDateTime.now()
-            val formatter = DateTimeFormatter.ofPattern("h:mm a")
-            val formatted = current.format(formatter)
-
             itemView.chat_nickname.text = item.nickname
             itemView.chat_msg.text = item.msg
-            itemView.chat_time.text = formatted
+            itemView.chat_time.text = item.time
             itemView.chat_msg.setPadding(10, 20, 10, 20)
 
 
@@ -60,7 +58,8 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
             }else{
                 itemView.chat_text_background.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.F46E6E))
                 itemView.chat_nickname.text = item.nickname
-                itemView.chat_image.setImageResource(R.drawable.icon)
+                //itemView.chat_image.setImageResource(R.drawable.icon)
+                Glide.with(context).load("https://bit.ly/2V1ipNj").into(itemView.chat_image);
                 itemView.chat_main_layout.gravity = 0
                 itemView.chat_msg.setTextColor(Color.WHITE)
             }
