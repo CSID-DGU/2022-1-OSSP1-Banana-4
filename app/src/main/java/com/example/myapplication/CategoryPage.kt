@@ -27,6 +27,7 @@ import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.brand_name.*
 
 
+
 class CategoryPage : AppCompatActivity() {
     private lateinit var adapter: BrandAdapter
     //private val viewModel by lazy {ViewModelProvider(this).get(ListViewModel::class.java)}
@@ -34,7 +35,6 @@ class CategoryPage : AppCompatActivity() {
     lateinit var userReference: DatabaseReference
 
     private lateinit var auth: FirebaseAuth
-
 
 
 
@@ -58,7 +58,25 @@ class CategoryPage : AppCompatActivity() {
 
         recycleView.adapter=adapter
 
-        databaseReference.child("matching").child(userid).removeValue() //유저데이터초기화
+        var waitUserNum=0
+        databaseReference.addValueEventListener(object :ValueEventListener {
+           override fun onDataChange(snapshot: DataSnapshot) {
+               val test=snapshot.child("WaitUsers")
+               waitUserNum= snapshot.child("WaitUsers").child("waitUserNum")
+                   .value.toString().toInt()
+
+               Log.e("qwer",waitUserNum.toString())
+           }
+
+           override fun onCancelled(error: DatabaseError) {
+               TODO("Not yet implemented")
+           }
+       })
+
+        Log.e("check",waitUserNum.toString())
+
+//        databaseReference.child("WaitUsers").child("List")
+//            .child(waitUserNum.toString()).removeValue() //유저데이터초기화
 
 
 
@@ -66,7 +84,7 @@ class CategoryPage : AppCompatActivity() {
         userReference=database.getReference("resData")
 
         var i=0
-        var resCate="13"  //가져오기
+        var resCate="13"  //임시
         var value=intent.getStringExtra("key1") //
         Log.e("snap",value.toString())
         when (value){
@@ -88,7 +106,7 @@ class CategoryPage : AppCompatActivity() {
 
         val rescateName=value.toString()
 
-        adapter.brandList.add(Brand("상관없음",rescateName,"240",resCate))
+        adapter.brandList.add(Brand("상관없음","240","240","240"))
 
 
         userReference.addValueEventListener(object :ValueEventListener {
@@ -114,8 +132,9 @@ class CategoryPage : AppCompatActivity() {
                         }
                     }
                     i++
-
                 }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -131,14 +150,25 @@ class CategoryPage : AppCompatActivity() {
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
         btn_search.setOnClickListener({
+
+            databaseReference.child("WaitUsers").child("List")
+                .child(waitUserNum.toString()).child("uid").setValue(userid)
+
+            databaseReference.child("WaitUsers").child("List")
+                .child(waitUserNum.toString()).child("grade").setValue(grade)
+            waitUserNum++
+            databaseReference.child("WaitUsers")
+                .child("waitUserNum").setValue(waitUserNum)
+
             val intent=Intent(this, LoginActivity::class.java)
             startActivity(intent)
         })
 
         val btn_again=findViewById<Button>(R.id.btn_again) //다시하기버튼 메인페이지로
         btn_again.setOnClickListener({
-           databaseReference.child("matching").child(userid).removeValue() //올라간데이터를삭제해줌
-
+            databaseReference.child("WaitUsers").child("List")
+                .child(waitUserNum.toString()).removeValue() //유저데이터초기화
+            //waitUserNum--
             val intent=Intent(this, LoginActivity::class.java)
             startActivity(intent)
 
@@ -154,6 +184,7 @@ class CategoryPage : AppCompatActivity() {
         var count=0 //브랜드 최대 3개선택
         var arr=arrayOf("0","0","0")
         var temp=0
+
 
         adapter.listener = object: OnBrandClickListener {
             override fun onItemClick(
@@ -184,8 +215,8 @@ class CategoryPage : AppCompatActivity() {
 
 
 
-                        val data =Brand(text, cate,cate_num ,
-                            num ,userid,grade )
+//                        val data =Brand(text, cate,cate_num ,
+//                            num ,userid,grade )
 
                         var i=0
                         var temp="0"
@@ -197,7 +228,9 @@ class CategoryPage : AppCompatActivity() {
                             }
                             i++
                         }
-                        databaseReference.child("matching").child(userid).child(temp.toString()).setValue(data)
+                        databaseReference.child("WaitUsers").child("List")
+                            .child(waitUserNum.toString()).child("brandList")
+                            .child(temp).setValue(cate_num)
 
                         // 매칭을 위해 실시간데이터의 matchingUser데이터에 카테고리정보를 넣어줍니다
                         checkStatus.put(position, false)
@@ -209,7 +242,8 @@ class CategoryPage : AppCompatActivity() {
                         i=0
                         while(i<3){
                             if(arr[i]==text_num) {
-                                databaseReference.child("matching").child(userid)
+                                databaseReference.child("WaitUsers").child("List")
+                                    .child(waitUserNum.toString()).child("brandList")
                                     .child((i + 1).toString()).removeValue() //올라간데이터를삭제해줌
                                 arr[i]="0"
                                 count--
@@ -220,10 +254,7 @@ class CategoryPage : AppCompatActivity() {
                         checkStatus.put(position,true)
                     }
                 }
-
             }
-
-
         }
     }
 
