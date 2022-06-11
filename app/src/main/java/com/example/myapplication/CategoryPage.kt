@@ -19,7 +19,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_category.view.*
 import kotlinx.android.synthetic.main.activity_main_page.*
@@ -33,13 +35,15 @@ class CategoryPage : AppCompatActivity() {
     lateinit var databaseReference: DatabaseReference
     lateinit var userReference: DatabaseReference
 
-    private lateinit var auth: FirebaseAuth
 
+    private lateinit var auth: FirebaseAuth
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
+
+
 
 
         var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
@@ -104,10 +108,8 @@ class CategoryPage : AppCompatActivity() {
 
         userReference.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-
                 for (ds in snapshot.children) {
                     val test = snapshot.child(i.toString())
-
                     for (es in test.children) {
                         val data= Brand(
                             test.child("name").value.toString(),
@@ -115,8 +117,6 @@ class CategoryPage : AppCompatActivity() {
                             test.child("cate_num").value.toString(),
                             test.child("num").value.toString()
                         )
-
-
                         if (es.key.toString()=="cate_num"){
                             val tempkey:String=es.value.toString()
                             if(tempkey==resCate){
