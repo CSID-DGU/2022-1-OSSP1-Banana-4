@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.activity_category.view.*
+import kotlinx.android.synthetic.main.activity_main_page.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.brand_name.*
 
@@ -65,13 +66,34 @@ class CategoryPage : AppCompatActivity() {
         userReference=database.getReference("resData")
 
         var i=0
-        val resCate="9"  //가져오기
-        val rescateName="임시"
+        var resCate="13"  //가져오기
+        var value=intent.getStringExtra("key1") //
+        Log.e("snap",value.toString())
+        when (value){
+            "고기/구이"->resCate= "0"
+            "도시락"->resCate= "1"
+            "돈까스/회/일식"->resCate= "2"
+            "백반/죽/국수"->resCate= "3"
+            "분식"->resCate= "4"
+            "아시안"->resCate= "5"
+            "양식"->resCate= "6"
+            "족발/보쌈"->resCate= "7"
+            "중식"->resCate= "8"
+            "찜/탕/찌개"->resCate= "9"
+            "치킨"->resCate= "10"
+            "카페/디저트"->resCate= "11"
+            "패스트푸드"->resCate= "12"
+            "피자"->resCate= "13"
+        }
+
+        val rescateName=value.toString()
+
         adapter.brandList.add(Brand("상관없음",rescateName,"240",resCate))
 
 
         userReference.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
+
                 for (ds in snapshot.children) {
                     val test = snapshot.child(i.toString())
 
@@ -131,7 +153,7 @@ class CategoryPage : AppCompatActivity() {
 
         var count=0 //브랜드 최대 3개선택
         var arr=arrayOf("0","0","0")
-
+        var temp=0
 
         adapter.listener = object: OnBrandClickListener {
             override fun onItemClick(
@@ -147,6 +169,7 @@ class CategoryPage : AppCompatActivity() {
                 text_grade: CharSequence
             ) {
 
+              
 
                 //3개 선택
                 if(checkStatus.get(position,true)){

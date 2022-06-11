@@ -99,32 +99,52 @@ class MainPage : AppCompatActivity() {
 
         recyclerView.adapter = adapter
 
+
+
+        //카테고리정보저장
+        var cate="string"
+        val intent = Intent(this, CategoryPage::class.java)
+
+
+
         //각 버튼들이 클릭했을 때
         adapter.listener = object : OnButtonItemClickListener{
             override fun onItemClick(holder: ButtonAdapter.ViewHolder?, view: View, position: Int, index:Int) {
                 var name:String?
                 if(index == 0) {
                     name = adapter.itemList[position].name1
-                    showToast("아이템 클릳됨 : ${adapter.itemList[position].name1}")
+                    showToast("아이템 클릭됨 : ${adapter.itemList[position].name1}")
+                    cate=adapter.itemList[position].name1.toString()
+                    intent.putExtra("key1", cate.toString())
+                    startActivity(intent)
+
                 }else{
                     name = adapter.itemList[position].name1
-                    showToast("아이템 클릳됨 : ${adapter.itemList[position].name2}")
+                    showToast("아이템 클릭됨 : ${adapter.itemList[position].name2}")
+                    cate=adapter.itemList[position].name2.toString()
+                    intent.putExtra("key1", cate.toString())
+                    startActivity(intent)
+
                 }
 
-                when(name){
-                    "Pizza" -> {
-                    }
-                    else -> {
-                        showToast("main button error")
-                    }
-                }
+//                when(name){
+//                    "Pizza" -> {
+//                    }
+//                    else -> {
+//                        showToast("main button error")
+//                    }
+//                }
             }
         }
+
+
+
+
     }
 
     fun showToast(msg:String){
         //Toast.makeText(applicationContext, msg, Toast.LENGTH_LONG).show()
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
     fun addCategory(id:String, filename:String?, name:String?){

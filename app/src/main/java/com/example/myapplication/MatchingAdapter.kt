@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.brand_name.view.*
 import kotlinx.android.synthetic.main.matching_dataname.view.*
 
 class MatchingAdapter(matchingSuccess: MatchingSuccess) : RecyclerView.Adapter<MatchingAdapter.ViewHolder>() {
 
-    val items=ArrayList<MatchingData>()
+    var items=mutableListOf<MatchingData>()
+    lateinit var listener : OnMatchingListener
 
     override fun getItemCount() = items.size
 
@@ -35,6 +35,14 @@ class MatchingAdapter(matchingSuccess: MatchingSuccess) : RecyclerView.Adapter<M
             itemView.userbrand3.text=item.brand3
 
         }
+        init{
+            itemView.setOnClickListener{
+                listener.onItemClick(this,itemView,adapterPosition,
+                    itemView.username.text)
+            }
+
+        }
+
     }
 
 }

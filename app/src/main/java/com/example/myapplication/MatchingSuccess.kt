@@ -1,10 +1,14 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.SparseBooleanArray
+import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -42,7 +46,7 @@ class MatchingSuccess : AppCompatActivity() {
 
         val adapter=MatchingAdapter(this)
 
-       databaseReference=database.getReference("MatchingUsers")
+        databaseReference=database.getReference("MatchingUsers")
 
         adapter.items.add(MatchingData("매칭1","냠1","냠냠2"))
         //매칭알고리즘만든후 유저데려오기
@@ -50,24 +54,27 @@ class MatchingSuccess : AppCompatActivity() {
         recycleView_m.adapter=adapter
 
 
+
+        //##유저불러오기
         var i=0
         databaseReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for (ds in snapshot.children) {
                     val test = snapshot.child(i.toString())
 
-                    for (es in test.children) {
+                    //for (es in test.children) {
                         val data= MatchingData(
                             test.child("name").value.toString(),
                             test.child("brand1").value.toString(),
                             test.child("brand2").value.toString(),
                             test.child("brand3").value.toString()
                         )
-                        if (es.key.toString()=="name")
+                       // if (es.key.toString()=="name")
                             adapter.items.add(data)
+                            Log.e("snap",data.toString())
 
+                    //}
 
-                    }
                     i++
 
                 }
@@ -80,10 +87,21 @@ class MatchingSuccess : AppCompatActivity() {
 
         //#############################카테고리불러오기끝###########//
 
+        adapter.listener = object: OnMatchingListener {
+            override fun onItemClick(
+                holder: MatchingAdapter.ViewHolder,
+                view: View?,
+                position: Int,
+                text_name: CharSequence
+            ) {
 
+                showToast("123")
 
+            }
+        }
 
-
-
+    }
+    fun showToast(message: String){
+        Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
     }
 }
