@@ -54,6 +54,9 @@ class LoginActivity : AppCompatActivity() {
                         email.setText("")
                         pwd.setText("")
                         val intent = Intent(this,MatchLoading::class.java)
+                        intent.putExtra("failedNum",0)
+                        intent.putExtra("grade", 3.5f)
+                        intent.putExtra("brandList", arrayListOf(99,81))
                         startActivity(intent)
                         finish()
                     }
