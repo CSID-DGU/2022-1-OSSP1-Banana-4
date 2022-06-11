@@ -8,16 +8,25 @@ import android.util.Log
 import android.util.SparseBooleanArray
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_matching_success.*
 
 class MatchingSuccess : AppCompatActivity() {
 
     lateinit var databaseReference: DatabaseReference
+    lateinit var imageIv:ImageView
+
+    lateinit var storage:FirebaseStorage
+    lateinit var firestore:FirebaseStorage
+
     private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
