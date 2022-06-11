@@ -40,10 +40,10 @@
             android:name=".categoryPage"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".matching.MatchLoading"
             android:exported="false" />
         <activity
-            android:name=".matching.MatchLoading"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

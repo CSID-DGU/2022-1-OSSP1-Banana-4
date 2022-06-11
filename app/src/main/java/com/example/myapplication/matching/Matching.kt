@@ -1,7 +1,13 @@
 package com.example.myapplication.matching
 
+import android.util.Log
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.coroutines.delay
+import kotlin.concurrent.timer
+
 
 class Matching{
     private var userList: MutableList<WaitUserData> = mutableListOf()
@@ -10,6 +16,7 @@ class Matching{
     private var mateList = mutableListOf<MateData>()
     var grade = 0f
     var uid = ""
+    var brandList : MutableList<Int> = mutableListOf()
 
     fun getUserList() : MutableList<WaitUserData>{
         return this.userList
@@ -24,23 +31,47 @@ class Matching{
         return this.mateList
     }
 
+/*    suspend fun submit():Boolean{
+
+        return try {
+            db.collection("xxxx").document("yyyy")
+
+                .get().await()
+
+             true
+
+        }catch (e:FirebaseException){
+
+            Log.e("error:","erroe:"+e.message.toString())
+
+            false
+
+        }
+    }*/
+
     // 초기화
     fun initData(waitUsers : DatabaseReference, waitUsersNum : Int){
         this.waitUserNum = waitUsersNum
-        for(rank in 0 until waitUsersNum){
+        for(rank in 0 until waitUsersNum) {
             val user = waitUsers.child(rank.toString())
-            user.get().addOnSuccessListener {
-                grade = it.child("grade").toString().toFloat()
-                uid = it.child("uid").toString()
+            user.child("uid").get().addOnSuccessListener {
+                uid = it.value.toString()
+                println("uid $uid")
             }
-            val brandList : MutableList<Int> = mutableListOf()
+            println("callback uid $uid")
+            user.child("grade").get().addOnSuccessListener {
+                println("uid ${it.value}")
+                grade = it.value.toString().toFloat()
+                println("uid $grade")
+            }
+            brandList = mutableListOf()
             user.child("brandList").get().addOnSuccessListener {
-                for(brand in it.children){
-                    brandList.add(brand.value.toString().toInt())
+                it.children.forEach {
+                brandList.add(it.value.toString().toInt())
                 }
             }
-            val waitUser = WaitUserData(uid ,grade ,rank ,brandList)
-            this.userList.add(waitUser)
+            val waitUser = WaitUserData(uid, grade, rank, brandList)
+            userList.add(waitUser)
         }
     }
 
@@ -125,7 +156,7 @@ class Matching{
             }
             if(success <=0 ){ // 매칭 실패자라면
                 user.fail++
-                user.grade += 0.5f
+                continue
             }
             mate.id = mate.userList[0].uid
             mateList.add(mate)
