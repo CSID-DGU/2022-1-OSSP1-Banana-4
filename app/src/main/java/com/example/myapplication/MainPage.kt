@@ -136,10 +136,6 @@ class MainPage : AppCompatActivity() {
 //                }
             }
         }
-
-
-
-
     }
 
     fun showToast(msg:String){

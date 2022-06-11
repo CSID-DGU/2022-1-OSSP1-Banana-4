@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.brand_name.*
 
 class CategoryPage : AppCompatActivity() {
     private lateinit var adapter: BrandAdapter
-    //private val viewModel by lazy {ViewModelProvider(this).get(ListViewModel::class.java)}
     lateinit var databaseReference: DatabaseReference
     lateinit var userReference: DatabaseReference
 
@@ -60,18 +59,18 @@ class CategoryPage : AppCompatActivity() {
 
         var waitUserNum=0
         databaseReference.addValueEventListener(object :ValueEventListener {
-           override fun onDataChange(snapshot: DataSnapshot) {
-               val test=snapshot.child("WaitUsers")
-               waitUserNum= snapshot.child("WaitUsers").child("waitUserNum")
-                   .value.toString().toInt()
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val test=snapshot.child("WaitUsers")
+                waitUserNum= snapshot.child("WaitUsers").child("waitUserNum")
+                    .value.toString().toInt()
 
-               Log.e("qwer",waitUserNum.toString())
-           }
+                Log.e("qwer",waitUserNum.toString())
+            }
 
-           override fun onCancelled(error: DatabaseError) {
-               TODO("Not yet implemented")
-           }
-       })
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
 
         //#############################카테고리불러오기###########//
@@ -136,8 +135,8 @@ class CategoryPage : AppCompatActivity() {
 
         //#############################카테고리불러오기끝###########//
 
-        
-        
+
+
 
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
@@ -249,4 +248,3 @@ class CategoryPage : AppCompatActivity() {
 
 
 }
-
