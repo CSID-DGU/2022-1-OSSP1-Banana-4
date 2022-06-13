@@ -16,11 +16,17 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Review"
+            android:name=".matching.MatchingSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".matching.MatchingFailed"
             android:exported="false"/>
         <activity
+            android:name=".Review"
+            android:exported="false" />
+        <activity
             android:name=".MyPage"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".ChatActivity"
             android:exported="false" />
@@ -47,6 +53,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
