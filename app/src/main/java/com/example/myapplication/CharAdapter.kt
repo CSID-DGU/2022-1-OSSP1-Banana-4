@@ -22,6 +22,7 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
     var myImage = "https://bit.ly/2V1ipNj"
     var myNickname = ""
     lateinit var context: ChatActivity
+    var myuid = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharAdapter.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_chat, parent, false)
@@ -59,7 +60,7 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
                 itemView.chat_text_background.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.F46E6E))
                 itemView.chat_nickname.text = item.nickname
                 //itemView.chat_image.setImageResource(R.drawable.icon)
-                Glide.with(context).load("https://bit.ly/2V1ipNj").into(itemView.chat_image);
+                Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/banana-8d3ab.appspot.com/o/Image%2F${myuid}?alt=media&token=05d7ec83-54a0-48fe-9b0f-cb1c3c92a4ad").into(itemView.chat_image);
                 itemView.chat_main_layout.gravity = 0
                 itemView.chat_msg.setTextColor(Color.WHITE)
             }

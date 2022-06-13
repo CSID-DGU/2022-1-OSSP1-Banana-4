@@ -1,16 +1,18 @@
 package com.example.myapplication
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*
+import kotlinx.android.synthetic.main.activity_main_page.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.reflect.typeOf
 
 class ChatActivity : AppCompatActivity() {
     private val adapter = CharAdapter()
@@ -21,31 +23,31 @@ class ChatActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
-
-
-        val user = Firebase.auth.currentUser
-        user?.let {
-            for (profile in it.providerData) {
-                // Id of the provider (ex: google.com)
-                val providerId = profile.providerId
-
-                // UID specific to the provider
-                val uid = profile.uid
-
-                // Name, email address, and profile photo Url
-                val name = profile.displayName
-                val email = profile.email
-                val photoUrl = profile.photoUrl
-                adapter.myImage = photoUrl.toString()
-            }
-        }
-
+        var database = FirebaseDatabase.getInstance()
+        var auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid.toString()
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
         nickname = "김효정"
         chatNum = "0"
 
-        var database = FirebaseDatabase.getInstance()
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Get Post object and use the values to update the UI
+                dataSnapshot.children.forEach {
+                    adapter.myuid = it.key!!
+                    chat_recyclerView.adapter = adapter
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        myRef = database.getReference("Users")
+        myRef.addValueEventListener(postListener)
+
+
         myRef = database.getReference("message").child(chatNum).child("contents")
         //database.getReference("message").child(chatNum).child("images").child("nick1").setValue("~~.png")
         //입력 했을 때
@@ -58,6 +60,8 @@ class ChatActivity : AppCompatActivity() {
         chat_back_button.setOnClickListener {
             val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
+
+
         }
 
         //나가기 버터느

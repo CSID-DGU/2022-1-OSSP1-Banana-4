@@ -21,7 +21,7 @@
             android:name=".MyPage"
             android:exported="false"/>
         <activity
-            android:name=".ChatActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainPage"
@@ -39,7 +39,7 @@
             android:name=".categoryPage"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ChatActivity"
             android:exported="true">
             
             <intent-filter>
