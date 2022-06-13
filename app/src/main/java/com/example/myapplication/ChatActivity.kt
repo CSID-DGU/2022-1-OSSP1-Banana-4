@@ -28,14 +28,15 @@ class ChatActivity : AppCompatActivity() {
         val uid = auth.currentUser?.uid.toString()
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "김효정"
+        nickname = "이지호"
         chatNum = "0"
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 dataSnapshot.children.forEach {
-                    adapter.myuid = it.key!!
+                    println(it.key)
+                    adapter.UsersIDMap.put(it.key!!, it.value!!)
                     chat_recyclerView.adapter = adapter
                 }
             }
@@ -44,7 +45,7 @@ class ChatActivity : AppCompatActivity() {
 
             }
         }
-        myRef = database.getReference("Users")
+        myRef = database.getReference("message").child(chatNum).child("UsersID")
         myRef.addValueEventListener(postListener)
 
 

@@ -5,11 +5,7 @@ import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
-import androidx.core.view.marginRight
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_register.view.*
@@ -19,6 +15,7 @@ import java.time.format.DateTimeFormatter
 
 class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
     var itemList = ArrayList<ChatData>()
+    var UsersIDMap = HashMap<String, Any>()
     var myImage = "https://bit.ly/2V1ipNj"
     var myNickname = ""
     lateinit var context: ChatActivity
@@ -60,7 +57,7 @@ class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
                 itemView.chat_text_background.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.F46E6E))
                 itemView.chat_nickname.text = item.nickname
                 //itemView.chat_image.setImageResource(R.drawable.icon)
-                Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/banana-8d3ab.appspot.com/o/Image%2F${myuid}?alt=media&token=05d7ec83-54a0-48fe-9b0f-cb1c3c92a4ad").into(itemView.chat_image);
+                Glide.with(context).load("https://firebasestorage.googleapis.com/v0/b/banana-8d3ab.appspot.com/o/Image%2F${UsersIDMap.get(item.nickname)}?alt=media&token=05d7ec83-54a0-48fe-9b0f-cb1c3c92a4ad").into(itemView.chat_image);
                 itemView.chat_main_layout.gravity = 0
                 itemView.chat_msg.setTextColor(Color.WHITE)
             }
