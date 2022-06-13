@@ -37,23 +37,27 @@ class CategoryPage : AppCompatActivity() {
     lateinit var userReference: DatabaseReference
 
 
-    private lateinit var firestore: FirebaseFirestore
+   // private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
 
 
+        var database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference()
+
         var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
         var grade="3.5"
 
         //##유저아이디###########
-//        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
-//        firestore= FirebaseFirestore.getInstance()
+        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
+        databaseReference.child("Users").child(userid).child("userGrade").get().addOnSuccessListener{
+            grade= it.value.toString()
+        }
 //        //######################
 
-        var database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference()
+
 
         adapter = BrandAdapter(this)
 
@@ -85,29 +89,36 @@ class CategoryPage : AppCompatActivity() {
 
         var i=0
         var resCate="13"  //임시
+        var sendCate="임시"
+
         var value=intent.getStringExtra("key1") //
         Log.e("snap",value.toString())
         when (value){
-            "고기/구이"->resCate= "0"
-            "도시락"->resCate= "1"
-            "돈까스/회/일식"->resCate= "2"
-            "백반/죽/국수"->resCate= "3"
-            "분식"->resCate= "4"
-            "아시안"->resCate= "5"
-            "양식"->resCate= "6"
-            "족발/보쌈"->resCate= "7"
-            "중식"->resCate= "8"
-            "찜/탕/찌개"->resCate= "9"
-            "치킨"->resCate= "10"
-            "카페/디저트"->resCate= "11"
-            "패스트푸드"->resCate= "12"
-            "피자"->resCate= "13"
+            "고기/구이"->{resCate= "0"; sendCate="meat"}
+            "도시락"->{resCate= "1";sendCate= "rice"}
+            "돈까스/회/일식"->{resCate= "2";sendCate= "sushi"}
+            "백반/죽/국수"->{resCate= "3";sendCate= "lunch"}
+            "분식"->{resCate= "4" ;sendCate= "hotdog"}
+            "아시안"->{resCate= "5";sendCate= "asian"}
+            "양식"->{resCate= "6";sendCate= "western"}
+            "족발/보쌈"->{resCate= "7" ; sendCate= "pig"}
+            "중식"->{resCate= "8";sendCate= "chinese"}
+            "찜/탕/찌개"->{resCate= "9";sendCate= "zzim"}
+            "치킨"->{resCate= "10";sendCate= "chicken"}
+            "카페/디저트"-> {resCate= "11"; sendCate= "dessert" }
+            "패스트푸드"->{resCate= "12";sendCate= "burger"}
+            "피자"->{ resCate = "13";sendCate= "pizza"}
         }
+
+
+        Log.e("snap",resCate.toString())
 
         val rescateName=value.toString()
 
         adapter.brandList.add(Brand("상관없음","0","0","0"))
 
+
+        Log.e("nowCate",sendCate)
 
         userReference.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -140,6 +151,7 @@ class CategoryPage : AppCompatActivity() {
 
 
 
+        var arr=arrayOf<String>("0","0","0")
 
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
@@ -154,7 +166,15 @@ class CategoryPage : AppCompatActivity() {
             databaseReference.child("WaitUsers")
                 .child("waitUserNum").setValue(waitUserNum)
 
-            val intent=Intent(this, LoginActivity::class.java)
+
+            Log.e("nowBrandList",arr.toString())
+
+
+            val intent=Intent(this, MatchingSuccess::class.java)
+            intent.putExtra("grade", grade.toString())
+            intent.putExtra("brandList", arr[0].toString())
+            intent.putExtra("category", sendCate.toString() )
+
             startActivity(intent)
         })
 
@@ -175,7 +195,6 @@ class CategoryPage : AppCompatActivity() {
         var num:String
 
         var count=0 //브랜드 최대 3개선택
-        var arr=arrayOf("0","0","0")
         var temp=0
 
 
@@ -210,15 +229,20 @@ class CategoryPage : AppCompatActivity() {
                         while(i<3){
                             if (arr[i]=="0") {
                                 temp = (i + 1).toString()
-                                arr[i]=num
+                                arr[i]=cate_num
                                 break
+
                             }
                             i++
                         }
-                        databaseReference.child("WaitUsers").child("List")
-                            .child(waitUserNum.toString()).child("brandList")
-                            .child(temp).setValue(cate_num)
+                        databaseReference.child("WaitUsers")
+                            .child("List")
+                            .child(waitUserNum.toString())
+                            .child("brandList")
 
+                            .child(temp).setValue(cate_num)
+                        println(arr[0]+arr[1]+arr[2])
+                        println(arr)
                         // 매칭을 위해 실시간데이터의 matchingUser데이터에 카테고리정보를 넣어줍니다
                         checkStatus.put(position, false)
                     }
@@ -229,7 +253,8 @@ class CategoryPage : AppCompatActivity() {
                         i=0
                         while(i<3){
                             if(arr[i]==text_num) {
-                                databaseReference.child("WaitUsers").child("List")
+                                databaseReference.child("List")
+                                    .child("WaitUsers")
                                     .child(waitUserNum.toString()).child("brandList")
                                     .child((i + 1).toString()).removeValue() //올라간데이터를삭제해줌
                                 arr[i]="0"
@@ -244,6 +269,9 @@ class CategoryPage : AppCompatActivity() {
             }
         }
     }
+
+
+
 
     fun showToast(message: String){
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show()

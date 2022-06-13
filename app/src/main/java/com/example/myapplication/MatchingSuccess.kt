@@ -9,6 +9,7 @@ import android.util.SparseBooleanArray
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,8 @@ import com.google.firebase.database.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_matching_success.*
+import kotlinx.android.synthetic.main.activity_register.*
+import org.w3c.dom.Text
 
 class MatchingSuccess : AppCompatActivity() {
 
@@ -37,8 +40,23 @@ class MatchingSuccess : AppCompatActivity() {
 
 
         databaseReference=database.getReference("MatchingUsers")
+        //var arr= arrayListOf<String>("0","0","0")
+        var arr = intent.getStringExtra("brandList" )
+        var grade = intent.getStringExtra("grade" )
+        var category = intent.getStringExtra("category" )
 
+        var tv=findViewById(R.id.tv2) as TextView
 
+        Log.e("grade",grade.toString())
+        Log.e("cate",category.toString())
+        Log.e("arr",arr.toString())
+
+        //Log.e("arr",arr[1].toString())
+
+       // Log.e("arr",arr[2].toString())
+
+        println(grade)
+        tv.setText(grade.toString())
 
 
         //##유저불러오기
@@ -63,3 +81,4 @@ class MatchingSuccess : AppCompatActivity() {
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
     }
 }
+
