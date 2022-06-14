@@ -130,7 +130,7 @@ class MatchLoading : AppCompatActivity() {
                     waitUserNum.setValue(waitUsersNum+1)
                 }
             }
-            if (waitUsersNum == 6) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
+            if (waitUsersNum == 1) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
                     /*println("10초 후 WAITUSERNUM : $waitUsersNum")*/
                     match(matching, waitUsers, waitUsersNum) // 매칭 & 대기열 리셋
