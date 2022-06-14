@@ -21,8 +21,8 @@
             android:id="@+id/logo"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="#000000"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            android:background="?attr/listChoiceBackgroundIndicator"
+            app:srcCompat="@drawable/logo" />
 
         <FrameLayout
             android:layout_width="match_parent"

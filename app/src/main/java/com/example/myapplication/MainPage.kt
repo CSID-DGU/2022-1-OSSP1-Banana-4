@@ -10,9 +10,12 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main_page.*
+import kotlinx.android.synthetic.main.row_chat.view.*
 import kotlin.reflect.typeOf
 
 
@@ -24,8 +27,13 @@ class MainPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_page)
 
+        var auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid.toString()
+
+        Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/banana-8d3ab.appspot.com/o/Image%2F${uid}?alt=media&token=05d7ec83-54a0-48fe-9b0f-cb1c3c92a4ad").into(icon_mypage);
+
         icon_mypage.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, MyPage::class.java)
             startActivity(intent)
         }
 
@@ -47,7 +55,6 @@ class MainPage : AppCompatActivity() {
         addCategory("11", "icon_asian","아시안")
         addCategory("12", "icon_buger","패스트푸드")
         addCategory("13", "icon_lunch","도시락")
-
 
         //레이아웃의 방향을 관리하는
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -89,19 +96,19 @@ class MainPage : AppCompatActivity() {
 
         databaseReference.addValueEventListener(postListener)
         //색상 추가
-        adapter.colorList.add(R.color.f3a683)
-        adapter.colorList.add(R.color.f7d794)
-        adapter.colorList.add(R.color.f8a5c2)
-        adapter.colorList.add(R.color.e778beb)
-        adapter.colorList.add(R.color.e77f67)
-        adapter.colorList.add(R.color.e786fa6)
-        adapter.colorList.add(R.color.e63cdda)
-        adapter.colorList.add(R.color.e93F1AA)
-        adapter.colorList.add(R.color.e3C7AFF)
-        adapter.colorList.add(R.color.cf6a87)
-
+        adapter.colorList.add(R.color.c63359a)
+        adapter.colorList.add(R.color.c743cb3)
+        adapter.colorList.add(R.color.ca585d4)
+        adapter.colorList.add(R.color.e0d0f0)
+        adapter.colorList.add(R.color.ce4ddf2)
+        adapter.colorList.add(R.color.cfaf3fb)
+//        <color name="c63359a">#63359a</color>
+//        <color name="c743cb3">#743cb3</color>
+//        <color name="ca585d4">#a585d4</color>
+//        <color name="e0d0f0">#e0d0f0</color>
+//        <color name="ce4ddf2">#e4ddf2</color>
+//        <color name="cfaf3fb">#faf3fb</color>
         recyclerView.adapter = adapter
-
 
 
         //카테고리정보저장
