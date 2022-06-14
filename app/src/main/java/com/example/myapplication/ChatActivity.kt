@@ -90,6 +90,7 @@ class ChatActivity : AppCompatActivity() {
                 var dataHash = snapshot.getValue() as HashMap<String, String>
                 adapter.itemList.add(ChatData(dataHash["msg"], dataHash["nickname"], dataHash["time"]))
                 chat_recyclerView.adapter = adapter
+                chat_recyclerView.scrollToPosition(adapter.itemCount-1)
             }
 
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
@@ -132,10 +133,44 @@ class ChatActivity : AppCompatActivity() {
         val formatter = DateTimeFormatter.ofPattern("h:mm a")
         val formatted = current.format(formatter)
         var chatdata:ChatData = ChatData(msg, nickname, formatted)
-
+         chat_recyclerView.scrollToPosition(adapter.itemCount-1)
 
         if (msg != null && !msg.equals("")){
             myRef.child(adapter.itemList.size.toString()).setValue(chatdata)
         }
     }
+     // 키보드 Open/Close 체크
+    private fun setupView() {
+        CHATTING.viewTreeObserver.addOnGlobalLayoutListener {
+            val rect = Rect()
+            CHATTING.getWindowVisibleDisplayFrame(rect)
+
+            val rootViewHeight = CHATTING.rootView.height
+            val heightDiff = rootViewHeight - rect.height()
+            isOpen = heightDiff > rootViewHeight * 0.25 // true == 키보드 올라감
+        }
+    }
+
+    /*** 세로 스크롤 가능 여부 확인 ***/
+    fun RecyclerView.isScrollable(): Boolean {
+        return canScrollVertically(1) || canScrollVertically(-1)
+    }
+
+    /*** StackFromEnd 설정 ***/
+    fun RecyclerView.setStackFromEnd() {
+        (layoutManager as? LinearLayoutManager)?.stackFromEnd = true
+    }
+
+    /*** StackFromEnd 확인***/
+    fun RecyclerView.getStackFromEnd(): Boolean {
+        return (layoutManager as? LinearLayoutManager)?.stackFromEnd ?: false
+    }
+
+    private val onLayoutChangeListener =
+        View.OnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
+            // 키보드가 올라와 높이가 변함
+            if (bottom < oldBottom) {
+                CHATTING.scrollBy(0, oldBottom - bottom) // 스크롤 유지를 위해 추가
+            }
+        }
 }
