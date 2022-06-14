@@ -28,7 +28,7 @@
             android:name=".MyPage"
             android:exported="false" />
         <activity
-            android:name=".ChatActivity"
+            android:name=".LoginActivity"
             android:windowSoftInputMode="adjustPan"
             android:exported="false" />
         <activity
@@ -47,7 +47,7 @@
             android:name=".CategoryPage"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ChatActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

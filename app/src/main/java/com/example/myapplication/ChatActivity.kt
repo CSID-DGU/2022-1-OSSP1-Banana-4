@@ -7,14 +7,10 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_chat.*
-import kotlinx.android.synthetic.main.activity_main_page.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.reflect.typeOf
 
 class ChatActivity : AppCompatActivity() {
     private val adapter = CharAdapter()
@@ -77,16 +73,11 @@ class ChatActivity : AppCompatActivity() {
             chat_inputBox.setText("")
         }
 
-        //뒤로 가기 버튼
-        chat_back_button.setOnClickListener {
-            val intent = Intent(this, MainPage::class.java)
-            startActivity(intent)
-        }
-
         //나가기 버터느
         chat_quit_button.setOnClickListener {
             database.getReference("message").child(chatNum).removeValue()
             val intent = Intent(this, MainPage::class.java)
+            intent.putExtra("userMap", adapter.UsersIDMap);
             startActivity(intent)
             finish()
         }
@@ -134,6 +125,7 @@ class ChatActivity : AppCompatActivity() {
         chat_date_textView.text = formatted
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addChat(msg:String?, nickname:String?){
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("h:mm a")
