@@ -6,5 +6,5 @@ import androidx.appcompat.widget.AppCompatButton
 data class MateData(
     val uid:String,
     val name:String,
-    val imageURI: Uri
+    val imageURL: String
 )

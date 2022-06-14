@@ -9,6 +9,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.example.myapplication.MatchingFailed
+import com.example.myapplication.MatchingSuccess
 import com.example.myapplication.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -21,6 +23,7 @@ import kotlin.concurrent.timer
 class MatchLoading : AppCompatActivity() {
 
     private lateinit var loading: ImageView
+    private lateinit var ctgImage : ImageView
     private var matching: Matching = Matching()
     private lateinit var auth: FirebaseAuth
     var waitUsersNum: Int = 0
@@ -32,60 +35,79 @@ class MatchLoading : AppCompatActivity() {
         setContentView(R.layout.activity_match_loading)
 
         auth = FirebaseAuth.getInstance()
+        ctgImage = findViewById(R.id.ctg_image)
         loading = findViewById(R.id.loading)
         // loading.gif 파일 불러오기
+        Glide.with(this).load(R.raw.loading).circleCrop().into(loading)
         var category = intent.extras?.getString("category")
+        var categoryNum : Int
+
         when(category) {
             "pizza" -> {
-                Glide.with(this).load(R.drawable.icon_pizza).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_pizza).circleCrop().into(ctgImage)
+                categoryNum = 13
             }
             "asian" -> {
-                Glide.with(this).load(R.drawable.icon_asian).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_asian).circleCrop().into(ctgImage)
+                categoryNum = 5
             }
             "burger" -> {
-                Glide.with(this).load(R.drawable.icon_buger).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_buger).circleCrop().into(ctgImage)
+                categoryNum = 12
             }
             "chicken" -> {
-                Glide.with(this).load(R.drawable.icon_chicken).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_chicken).circleCrop().into(ctgImage)
+                categoryNum = 10
             }
             "chinese" -> {
-                Glide.with(this).load(R.drawable.icon_chinese_food).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_chinese_food).circleCrop().into(ctgImage)
+                categoryNum = 8
             }
             "dessert" -> {
-                Glide.with(this).load(R.drawable.icon_dessert).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_dessert).circleCrop().into(ctgImage)
+                categoryNum = 11
             }
             "hotdog" -> {
-                Glide.with(this).load(R.drawable.icon_hot_dog).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_hot_dog).circleCrop().into(ctgImage)
+                categoryNum = 4
             }
             "lunch" -> {
-                Glide.with(this).load(R.drawable.icon_lunch).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_lunch).circleCrop().into(ctgImage)
+                categoryNum = 1
             }
             "meat" -> {
-                Glide.with(this).load(R.drawable.icon_meat).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_meat).circleCrop().into(ctgImage)
+                categoryNum = 0
             }
             "pig" -> {
-                Glide.with(this).load(R.drawable.icon_pig).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_pig).circleCrop().into(ctgImage)
+                categoryNum = 7
             }
             "rice" -> {
-                Glide.with(this).load(R.drawable.icon_rice).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_rice).circleCrop().into(ctgImage)
+                categoryNum = 3
             }
             "sushi" -> {
-                Glide.with(this).load(R.drawable.icon_sushi).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_sushi).circleCrop().into(ctgImage)
+                categoryNum = 2
             }
             "western" -> {
-                Glide.with(this).load(R.drawable.icon_western_food).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_western_food).circleCrop().into(ctgImage)
+                categoryNum = 6
             }
             "zzim" -> {
-                Glide.with(this).load(R.drawable.icon_zzim).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon_zzim).circleCrop().into(ctgImage)
+                categoryNum = 9
             }
             else -> {
-                Glide.with(this).load(R.drawable.icon).circleCrop().into(loading)
+                Glide.with(this).load(R.drawable.icon).circleCrop().into(ctgImage)
+                categoryNum = -1
             }
         }
 
-        val waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers")
+        val waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum")
         val waitUserNum =
-            FirebaseDatabase.getInstance().getReference("WaitUsers").child("waitUserNum")
+            FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum")
         val uid = auth.currentUser?.uid.toString()
         val finish = FirebaseDatabase.getInstance().getReference("FinishedMatch")
 
@@ -127,13 +149,13 @@ class MatchLoading : AppCompatActivity() {
                     waitUsers.child("$waitUsersNum").child("grade")
                         .setValue(grade)
                     waitUsers.child("$waitUsersNum").child("brandList").setValue(brandList)
-                    waitUserNum.setValue(waitUsersNum+1)
+                    waitUserNum.setValue(++waitUsersNum)
                 }
             }
             if (waitUsersNum == 1) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
-                    /*println("10초 후 WAITUSERNUM : $waitUsersNum")*/
-                    match(matching, waitUsers, waitUsersNum) // 매칭 & 대기열 리셋
+                    println("10초 후 WAITUSERNUM : $waitUsersNum")
+                    match(matching, waitUsers, waitUsersNum, categoryNum) // 매칭 & 대기열 리셋
 
                     Handler(Looper.getMainLooper()).postDelayed({
                         // 성공한 사람들
@@ -151,7 +173,9 @@ class MatchLoading : AppCompatActivity() {
                             /*println("실패한 userid : ${failUser.uid}")*/
                             finish.child(failUser.uid).child("isSuccess").setValue(false)
                         }
-                        isMatch(finish, uid, failedNum, grade, brandList!!)
+                        if (category != null) {
+                            isMatch(finish, uid, failedNum, grade, brandList!!, category)
+                        }
                         cancel()
                     }, 3000)
                     cancel()
@@ -162,7 +186,9 @@ class MatchLoading : AppCompatActivity() {
                     finish.get().addOnSuccessListener {
                         it.children.forEach {
                             if (uid.equals(it.key)) { // finish
-                                isMatch(finish, uid, failedNum, grade, brandList!!)
+                                if (category != null) {
+                                    isMatch(finish, uid, failedNum, grade, brandList!!, category)
+                                }
                                 cancel()
                             }
                         }
@@ -178,7 +204,8 @@ class MatchLoading : AppCompatActivity() {
         uid: String,
         failedNum: Int,
         grade: Float,
-        brandList: ArrayList<Int>
+        brandList: ArrayList<Int>,
+        category : String
     ) {
         finish.child(uid).child("isSuccess").get().addOnSuccessListener {
             isSuccess = it.value.toString().toBoolean()
@@ -193,6 +220,7 @@ class MatchLoading : AppCompatActivity() {
                 val successIntent = Intent(this, MatchingSuccess::class.java)
                 finish.child(uid).child("teamID").get().addOnSuccessListener {
                     successIntent.putExtra("teamID", it.value.toString())
+                    successIntent.putExtra("category",category)
                     finish.child(uid).removeValue()
                     startActivity(successIntent)
                     this.finish()
@@ -217,12 +245,13 @@ class MatchLoading : AppCompatActivity() {
         return
     }
 
-    private fun match(matching: Matching, waitUsers: DatabaseReference, waitUsersNum: Int) {
+    private fun match(matching: Matching, waitUsers: DatabaseReference, waitUsersNum: Int, categoryNum : Int) {
 
         // 초기화
         matching.initData(waitUsers, waitUsersNum)
-        waitUsers.removeValue()
         Handler(Looper.getMainLooper()).postDelayed({
+            waitUsers.removeValue()
+            FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum").setValue(0)
             // 정렬
             matching.sort()
             // print

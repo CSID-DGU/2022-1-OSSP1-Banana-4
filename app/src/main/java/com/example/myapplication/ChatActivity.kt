@@ -15,6 +15,9 @@ import java.time.format.DateTimeFormatter
 import kotlin.reflect.typeOf
 import androidx.recyclerview.widget.RecyclerView
 import android.graphics.Rect
+import android.os.Build
+import android.view.View
+import androidx.annotation.RequiresApi
 
 class ChatActivity : AppCompatActivity() {
     private val adapter = CharAdapter()
@@ -22,6 +25,7 @@ class ChatActivity : AppCompatActivity() {
     lateinit var chatNum: String
     lateinit var myRef: DatabaseReference
     private var isOpen = false // 키보드 올라왔는지 확인
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -130,6 +134,7 @@ class ChatActivity : AppCompatActivity() {
         chat_date_textView.text = formatted
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun addChat(msg:String?, nickname:String?){
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("h:mm a")
