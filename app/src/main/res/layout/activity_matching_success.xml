@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="194dp">
+        android:layout_height="223dp">
 
     </LinearLayout>
 
@@ -30,41 +30,25 @@
 
 
         <TextView
-
-            android:id="@+id/tv1"
-            android:layout_width="426dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:text="같이 주문할"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <TextView
             android:id="@+id/tv2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="채팅방"
+            android:text="카테고리"
             android:textColor="@color/black"
-            android:textSize="30dp" />
+            android:textSize="40dp" />
 
         <TextView
-            android:id="@+id/tv3"
-            android:layout_width="wrap_content"
+
+            android:id="@+id/tv1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="426dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:text="을 찾았어요!"
+            android:text="같이 주문할 사람을 찾았어요!"
             android:textColor="@color/black"
-            android:textSize="30dp" />
-
-
-
+            android:textSize="25dp" />
 
 
         <LinearLayout

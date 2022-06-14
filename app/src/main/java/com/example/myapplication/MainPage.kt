@@ -25,7 +25,7 @@ class MainPage : AppCompatActivity() {
         setContentView(R.layout.activity_main_page)
 
         icon_mypage.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+            val intent = Intent(this, MyPage::class.java)
             startActivity(intent)
         }
 

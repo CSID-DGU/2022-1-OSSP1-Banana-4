@@ -16,11 +16,14 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".matching.MatchingSuccess"
+            android:name=".FinishActivity"
             android:exported="false" />
         <activity
-            android:name=".matching.MatchingFailed"
-            android:exported="false"/>
+            android:name=".MatchingSuccess"
+            android:exported="false" />
+        <activity
+            android:name=".MatchingFailed"
+            android:exported="false" />
         <activity
             android:name=".Review"
             android:exported="false" />
@@ -45,6 +48,9 @@
             android:exported="false" />
         <activity
             android:name=".CategoryPage"
+            android:exported="false" />
+        <activity
+            android:name=".matching.MatchLoading"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"

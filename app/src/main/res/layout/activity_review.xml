@@ -25,25 +25,24 @@
     -->
 
         <TextView
-            android:id="@+id/review_title"
+            android:id="@+id/my_page_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-black"
-            android:text="@string/review_title"
+            android:text="Review"
             android:textColor="@color/black"
-            android:textSize="60px"
+            android:textSize="35dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.133" />
+            app:layout_constraintVertical_bias="0.13" />
 
         <ImageButton
             android:id="@+id/to_my_page_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:background="@color/white"
             android:padding="0sp"
             android:scaleType="centerCrop"
@@ -51,10 +50,10 @@
             app:civ_border_color="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.053"
+            app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.139" />
+            app:layout_constraintVertical_bias="0.143" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
@@ -66,10 +65,10 @@
             app:civ_border_width="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.254" />
+            app:layout_constraintVertical_bias="0.263" />
 
         <TextView
             android:id="@+id/username"
@@ -77,86 +76,82 @@
             android:layout_height="wrap_content"
             android:text="@string/test_username"
             android:textColor="@color/black"
-            android:textSize="50px"
+            android:textSize="25dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.453" />
+            app:layout_constraintVertical_bias="0.449" />
 
         <TextView
             android:id="@+id/user_grade_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/user_grade_title"
-            android:textColor="@color/darkGrey"
-            android:textSize="50px"
+            android:text="Grade"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.073"
+            app:layout_constraintHorizontal_bias="0.069"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.491" />
-
+            app:layout_constraintVertical_bias="0.516" />
         <RatingBar
             android:id="@+id/rating_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="false"
             android:numStars="5"
-            android:scaleX="0.8"
-            android:scaleY="0.8"
+            android:scaleX="1.4"
+            android:scaleY="1.4"
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.485"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.552" />
+            app:layout_constraintVertical_bias="0.606" />
 
         <View
             android:id="@+id/line1"
-            android:layout_width="600px"
+            android:layout_width="1000px"
             android:layout_height="2dp"
-            android:background="@color/lightGrey"
+            android:background="@color/darkGrey"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.587" />
-
+            app:layout_constraintVertical_bias="0.655" />
 
         <TextView
-            android:id="@+id/review_message_title"
+            android:id="@+id/review_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/review_message_title"
-            android:textColor="@color/darkGrey"
-            android:textSize="50px"
+            android:text="Review"
+            android:textSize="20dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.069"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.667" />
+            app:layout_constraintVertical_bias="0.704" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/review"
             android:layout_width="371dp"
             android:layout_height="103dp"
             android:background="@drawable/mypage_round_layout"
-            android:hint="솔직한 후기를 적어주세요."
-            android:padding="20px"
+            android:hint="Please leave your review."
+            android:padding="45px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.821" />
+            app:layout_constraintVertical_bias="0.859" />
 
         <ImageButton
             android:id="@+id/review_button"
@@ -172,7 +167,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.923" />
+            app:layout_constraintVertical_bias="0.941" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
