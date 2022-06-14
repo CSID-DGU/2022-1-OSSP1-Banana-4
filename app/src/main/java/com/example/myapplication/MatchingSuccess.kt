@@ -31,6 +31,7 @@ class MatchingSuccess : AppCompatActivity() {
 
     lateinit var storage:FirebaseStorage
     lateinit var firestore:FirebaseStorage
+    lateinit var nickname:String
 
     private lateinit var auth: FirebaseAuth
 
@@ -38,10 +39,16 @@ class MatchingSuccess : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matching_success)
 
+
         var database = FirebaseDatabase.getInstance();
+        var auth = FirebaseAuth.getInstance()
+        val uid = auth.currentUser?.uid.toString()
+        databaseReference = database.getReference("User").child(uid).child("userNickname")
+        databaseReference.get().addOnSuccessListener{
+            nickname = it.value.toString()
+        }
 
         databaseReference = database.getReference()
-
 
         var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
         userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
@@ -90,6 +97,7 @@ class MatchingSuccess : AppCompatActivity() {
         btn_done.setOnClickListener({
             val intent= Intent(this, ChatActivity::class.java)
             intent.putExtra("teamid", teamid.toString())
+            intent.putExtra("nickname", nickname)
 
             startActivity(intent)
         })

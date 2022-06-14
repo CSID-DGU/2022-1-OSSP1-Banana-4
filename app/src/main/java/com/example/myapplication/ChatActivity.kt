@@ -33,8 +33,8 @@ class ChatActivity : AppCompatActivity() {
 
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "none"
-        chatNum = "0"
+        nickname = intent.getStringExtra("nickname").toString()
+        chatNum = intent.getStringExtra("teamid").toString()
 
 //        myRef = database.getReference("User").child(uid).child("userNickname")
 //        myRef.get().addOnSuccessListener{
