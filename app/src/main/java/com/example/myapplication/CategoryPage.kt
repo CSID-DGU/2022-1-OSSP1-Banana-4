@@ -140,6 +140,8 @@ class CategoryPage : AppCompatActivity() {
                     }
                     i++
                 }
+
+                
             }
 
             override fun onCancelled(error: DatabaseError) {
