@@ -116,14 +116,14 @@ class MainPage : AppCompatActivity() {
                 var name:String?
                 if(index == 0) {
                     name = adapter.itemList[position].name1
-                    showToast("아이템 클릭됨 : ${adapter.itemList[position].name1}")
+                    //showToast("아이템 클릭됨 : ${adapter.itemList[position].name1}")
                     cate=adapter.itemList[position].name1.toString()
                     intent.putExtra("key1", cate.toString())
                     startActivity(intent)
 
                 }else{
                     name = adapter.itemList[position].name1
-                    showToast("아이템 클릭됨 : ${adapter.itemList[position].name2}")
+                   // showToast("아이템 클릭됨 : ${adapter.itemList[position].name2}")
                     cate=adapter.itemList[position].name2.toString()
                     intent.putExtra("key1", cate.toString())
                     startActivity(intent)
