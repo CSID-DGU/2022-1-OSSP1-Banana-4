@@ -31,7 +31,6 @@ class MatchingSuccess : AppCompatActivity() {
 
     lateinit var storage:FirebaseStorage
     lateinit var firestore:FirebaseStorage
-    lateinit var nickname:String
 
     private lateinit var auth: FirebaseAuth
 
@@ -39,28 +38,27 @@ class MatchingSuccess : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matching_success)
 
-
         var database = FirebaseDatabase.getInstance();
-        var auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid.toString()
-        databaseReference = database.getReference("User").child(uid).child("userNickname")
-        databaseReference.get().addOnSuccessListener{
-            nickname = it.value.toString()
-        }
 
         databaseReference = database.getReference()
 
-        var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
-        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
+
         var teamid=intent.getStringExtra("teamID")
 
 
-        databaseReference=database.getReference("MatchingUsers")
-        val arr = intent.getStringArrayExtra("branList")
-        val grade = intent.getStringExtra("grade" )
-        val category = intent.getStringExtra("category" )
 
-        val value=intent.getStringExtra("dfs")
+        databaseReference=database.getReference("MatchingUsers")
+
+        //### intent넘겨주기 실험용 밑에
+//        val grade = intent.getStringExtra("grade" )
+//        val category = intent.getStringExtra("category" )
+//        val arr = intent.getSerializableExtra("brandList") as ArrayList<String>
+        //###
+
+
+        val value=intent.getStringExtra("dfs") //임시로 카테고리불러오기
+
+
 
         var sendCate ="임시카테고리명"
 
@@ -80,17 +78,9 @@ class MatchingSuccess : AppCompatActivity() {
             "burger"->{sendCate= "패스트푸드"}
             "pizza"->{ sendCate= "피자"}
         }
-        var tv=findViewById(R.id.tv1) as TextView
 
-        Log.e("grade",grade.toString())
-        Log.e("cate",category.toString())
-        Log.e("arr",arr.toString())
-
-        //Log.e("arr",arr[1].toString())
-
-       // Log.e("arr",arr[2].toString())
-
-        tv.setText(arr.toString())
+        var tv=findViewById(R.id.tv2) as TextView
+        tv.setText(sendCate.toString() )
 
 
         //##유저불러오기
@@ -109,7 +99,6 @@ class MatchingSuccess : AppCompatActivity() {
         btn_done.setOnClickListener({
             val intent= Intent(this, ChatActivity::class.java)
             intent.putExtra("teamid", teamid.toString())
-            intent.putExtra("nickname", nickname)
 
             startActivity(intent)
         })

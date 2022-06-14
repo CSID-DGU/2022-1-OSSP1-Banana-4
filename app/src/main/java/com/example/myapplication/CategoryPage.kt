@@ -157,7 +157,7 @@ class CategoryPage : AppCompatActivity() {
 
 
 
-        var arr=arrayOf<String>("0","0","0")
+        var arr= arrayListOf<String>("0","0","0")
 
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
@@ -174,12 +174,15 @@ class CategoryPage : AppCompatActivity() {
 
 
             Log.e("nowBrandList", arr.toString())
+          //  Log.e("nowBrandList", arr[0].toString())
 
 
-            val intent = Intent(this, MatchLoading::class.java)
+            val intent = Intent(this, MatchingSuccess::class.java)
             intent.putExtra("grade", grade.toString())
             intent.putExtra("brandList", arr)
             intent.putExtra("category", sendCate.toString())
+            //val arr = intent.getSerializableExtra("brandList") as ArrayList<String>
+            //브랜드리스트는 위와같이 받아오면됨! 이후 arr[0], arr[1]등 사용가능
             startActivity(intent)
         }
 
@@ -245,8 +248,6 @@ class CategoryPage : AppCompatActivity() {
                             .child("brandList")
 
                             .child(temp).setValue(cate_num)
-                        println(arr[0]+arr[1]+arr[2])
-                        println(arr)
                         // 매칭을 위해 실시간데이터의 matchingUser데이터에 카테고리정보를 넣어줍니다
                         checkStatus.put(position, false)
                     }
