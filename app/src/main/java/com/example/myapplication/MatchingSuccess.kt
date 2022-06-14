@@ -43,24 +43,36 @@ class MatchingSuccess : AppCompatActivity() {
         databaseReference = database.getReference()
 
 
-        var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
-        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
+        var teamid=intent.getStringExtra("teamID")
 
 
-        teamReference=database.getReference("FinishedMatch")
-
-        var teamid="id"
-        teamReference.child(userid).child("teamID").get().addOnSuccessListener{
-            teamid= it.value.toString()
-        }
 
         databaseReference=database.getReference("MatchingUsers")
-        //var arr= arrayListOf<String>("0","0","0")
-        var arr = intent.getStringExtra("brandList" )
-        var grade = intent.getStringExtra("grade" )
-        var category = intent.getStringExtra("category" )
+        val arr = intent.getStringArrayExtra("branList")
+        val grade = intent.getStringExtra("grade" )
+        val category = intent.getStringExtra("category" )
 
-        var tv=findViewById(R.id.tv2) as TextView
+        val value=intent.getStringExtra("dfs")
+
+        var sendCate ="임시카테고리명"
+
+        when (value){
+            "meat"->{sendCate="고기/구이"}
+            "rice"->{sendCate= "도시락"}
+            "sushi"->{sendCate= "돈까스/회/일식"}
+            "lunch"->{sendCate= "백반/죽/국수"}
+            "hotdog"->{sendCate= "분식"}
+            "asian"->{sendCate= "아시안"}
+            "western"->{sendCate= "양식"}
+            "pig"->{sendCate= "족발/보쌈"}
+            "chinese"->{sendCate= "중식"}
+            "zzim"->{sendCate= "찜/탕/찌개"}
+            "chicken"->{sendCate= "치킨"}
+            "dessert"-> {sendCate= "카페/디저트" }
+            "burger"->{sendCate= "패스트푸드"}
+            "pizza"->{ sendCate= "피자"}
+        }
+        var tv=findViewById(R.id.tv1) as TextView
 
         Log.e("grade",grade.toString())
         Log.e("cate",category.toString())
@@ -70,8 +82,7 @@ class MatchingSuccess : AppCompatActivity() {
 
        // Log.e("arr",arr[2].toString())
 
-        println(grade)
-        tv.setText(grade.toString())
+        tv.setText(arr.toString())
 
 
         //##유저불러오기
