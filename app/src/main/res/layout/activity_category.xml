@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/banana_background"
-    tools:context=".categoryPage">
+    tools:context=".CategoryPage">
 
 
 >
@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="138dp">
+        android:layout_height="177dp">
 
     </LinearLayout>
 
@@ -30,7 +30,7 @@
 
         <TextView
 
-            android:id="@+id/tv1"
+            android:id="@+id/tv11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -68,13 +68,16 @@
                 android:id="@+id/btn_again"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
+                android:backgroundTint="#ffff00"
                 android:text="다시하기" />
 
             <Button
                 android:id="@+id/btn_search"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="찾기" />
+                android:text="찾기"
+                android:textColor="@color/white"
+                android:backgroundTint="#000000"/>
 
             />
         </LinearLayout>
