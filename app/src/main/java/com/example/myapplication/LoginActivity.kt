@@ -53,7 +53,7 @@ class LoginActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         email.setText("")
                         pwd.setText("")
-                        val intent = Intent(this,MyPage::class.java)
+                        val intent = Intent(this,MainPage::class.java)
                         startActivity(intent)
                         finish()
                     }
