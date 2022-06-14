@@ -13,13 +13,15 @@ import kotlinx.android.synthetic.main.activity_main_page.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import kotlin.reflect.typeOf
+import androidx.recyclerview.widget.RecyclerView
+import android.graphics.Rect
 
 class ChatActivity : AppCompatActivity() {
     private val adapter = CharAdapter()
     lateinit var nickname: String
     lateinit var chatNum: String
     lateinit var myRef: DatabaseReference
-
+    private var isOpen = false // 키보드 올라왔는지 확인
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
