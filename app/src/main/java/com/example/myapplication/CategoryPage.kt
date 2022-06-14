@@ -177,7 +177,7 @@ class CategoryPage : AppCompatActivity() {
           //  Log.e("nowBrandList", arr[0].toString())
 
 
-            val intent = Intent(this, MatchingSuccess::class.java)
+            val intent = Intent(this, MatchLoading::class.java)
             intent.putExtra("grade", grade.toString())
             intent.putExtra("brandList", arr)
             intent.putExtra("category", sendCate.toString())
