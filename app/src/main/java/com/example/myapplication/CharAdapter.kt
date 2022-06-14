@@ -16,10 +16,8 @@ import java.time.format.DateTimeFormatter
 class CharAdapter : RecyclerView.Adapter<CharAdapter.ViewHolder>(){
     var itemList = ArrayList<ChatData>()
     var UsersIDMap = HashMap<String, Any>()
-    var myImage = "https://bit.ly/2V1ipNj"
     var myNickname = ""
     lateinit var context: ChatActivity
-    var myuid = ""
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharAdapter.ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_chat, parent, false)

@@ -26,11 +26,17 @@ class ChatActivity : AppCompatActivity() {
         var database = FirebaseDatabase.getInstance()
         var auth = FirebaseAuth.getInstance()
         val uid = auth.currentUser?.uid.toString()
+
+        //가져오기 전에
+        //채팅방 번호랑, 이름만 넘겨주시고
+        //채팅방 번호의 UsersID 이름이랑, uid 넣어주시면 됩니다.
+
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
         nickname = "이지호"
         chatNum = "0"
 
+        //hash map에 매칭된 사용자들, (이름, uid) 넝어주기
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
@@ -48,9 +54,9 @@ class ChatActivity : AppCompatActivity() {
         myRef = database.getReference("message").child(chatNum).child("UsersID")
         myRef.addValueEventListener(postListener)
 
-
         myRef = database.getReference("message").child(chatNum).child("contents")
         //database.getReference("message").child(chatNum).child("images").child("nick1").setValue("~~.png")
+
         //입력 했을 때
         chat_submit_button.setOnClickListener {
             addChat(chat_inputBox.text.toString(),nickname)
