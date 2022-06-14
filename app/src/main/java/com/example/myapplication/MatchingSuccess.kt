@@ -20,11 +20,13 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_matching_success.*
 import kotlinx.android.synthetic.main.activity_register.*
+import kotlinx.android.synthetic.main.brand_name.*
 import org.w3c.dom.Text
 
 class MatchingSuccess : AppCompatActivity() {
 
     lateinit var databaseReference: DatabaseReference
+    lateinit var teamReference: DatabaseReference
     lateinit var imageIv:ImageView
 
     lateinit var storage:FirebaseStorage
@@ -38,6 +40,19 @@ class MatchingSuccess : AppCompatActivity() {
 
         var database = FirebaseDatabase.getInstance();
 
+        databaseReference = database.getReference()
+
+
+        var userid="id" //유저아이디, 별점은 선택시 전송하는걸로
+        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
+
+
+        teamReference=database.getReference("FinishedMatch")
+
+        var teamid="id"
+        teamReference.child(userid).child("teamID").get().addOnSuccessListener{
+            teamid= it.value.toString()
+        }
 
         databaseReference=database.getReference("MatchingUsers")
         //var arr= arrayListOf<String>("0","0","0")
@@ -66,17 +81,20 @@ class MatchingSuccess : AppCompatActivity() {
         val btn_back=findViewById<Button>(R.id.btn_back) //뒤로가기버튼
         btn_back.setOnClickListener({
 
-            val intent= Intent(this, CategoryPage::class.java) //다른 메뉴 찾아보기
+            val intent= Intent(this, MainPage::class.java) //다른 메뉴 찾아보기
+
             startActivity(intent)
         })
 
         val btn_done=findViewById<Button>(R.id.btn_done) //매칭 완료 채팅방생성
         btn_done.setOnClickListener({
-            val intent= Intent(this, MainPage::class.java) //다시 매칭시도
+            val intent= Intent(this, ChatActivity::class.java)
+            intent.putExtra("teamid", teamid.toString())
+
             startActivity(intent)
         })
-
     }
+
     fun showToast(message: String){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
     }
