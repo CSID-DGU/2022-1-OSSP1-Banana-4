@@ -33,17 +33,20 @@ class ChatActivity : AppCompatActivity() {
 
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "홍연주"
+        nickname = "강현우"
         chatNum = "0"
+        var chatOder = "0"
 
         //hash map에 매칭된 사용자들, (이름, uid) 넝어주기
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
                 dataSnapshot.children.forEach {
-                    println(it.key)
-                    adapter.UsersIDMap.put(it.key!!, it.value!!)
-                    chat_recyclerView.adapter = adapter
+                    it.children.forEach {
+                        println(adapter.UsersIDMap)
+                        adapter.UsersIDMap.put(it.key!!, it.value!!)
+                        chat_recyclerView.adapter = adapter
+                    }
                 }
             }
 
@@ -51,7 +54,11 @@ class ChatActivity : AppCompatActivity() {
 
             }
         }
+
+        var tempMap = HashMap<String, String>()
+        tempMap.put(nickname, uid)
         myRef = database.getReference("message").child(chatNum).child("UsersID")
+        myRef.child(chatOder).setValue(tempMap)
         myRef.addValueEventListener(postListener)
 
         myRef = database.getReference("message").child(chatNum).child("contents")
