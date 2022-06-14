@@ -35,13 +35,13 @@ class categoryPage : AppCompatActivity() {
         val userRef = database.getReference("matchingUser")
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
-        btn_search.setOnClickListener({
+        btn_search.setOnClickListener{
             val intent=Intent(this, MainPage::class.java)
             startActivity(intent)
-        })
+        }
 
         val btn_again=findViewById<Button>(R.id.btn_again) //다시하기버튼 메인페이지로
-        btn_again.setOnClickListener({
+        btn_again.setOnClickListener{
             val intent=Intent(this, MainPage::class.java)
             startActivity(intent)
 
@@ -49,7 +49,7 @@ class categoryPage : AppCompatActivity() {
             userRef.removeValue() //올라간데이터를삭제해줌
 
 
-        })
+        }
 
 
         //

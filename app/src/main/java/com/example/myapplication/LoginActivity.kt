@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.FindPasswordActivity
 import com.example.myapplication.R
 import com.example.myapplication.RegisterActivity
+import com.example.myapplication.matching.MatchLoading
+import com.example.myapplication.matching.Matching
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
