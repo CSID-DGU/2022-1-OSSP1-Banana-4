@@ -43,7 +43,7 @@
             android:name=".FindPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".categoryPage"
+            android:name=".CategoryPage"
             android:exported="false" />
         <activity
             android:name=".ChatActivity"
