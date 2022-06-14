@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -39,40 +40,38 @@ class Review : AppCompatActivity()  {
         val uid = auth.currentUser?.uid.toString()
         dbRef = FirebaseDatabase.getInstance().getReference("Users").child(uid)
 
-        // MyPage.kt 에서 mateID 가져옴
-        val mateID = intent.extras?.getString("mate_id")
-
+        // finish 에서 mateID 가져옴
+        val mateID = intent.extras?.getString("mate_id").toString()
         // mate_id의 속성 불러오기
-        val mate = FirebaseDatabase.getInstance().getReference("Users").child(mateID.toString())
+        val mate = FirebaseDatabase.getInstance().getReference("Users").child(mateID)
 
-        var userName : String? = null
-        var uri : Uri? = null
-        var reviewSum : Float = 0f
-        var reviewNum : Int = 0
-        var reviewMax : Float = 5f
-        var reviewMin : Float = 0f
+        var userName : String?
+        var reviewSum = 0f
+        var reviewNum = 0
+        var reviewMax = 5f
+        var reviewMin = 0f
+        var grade = 0f
 
         mate.get().addOnSuccessListener{ dataSnapshot ->
-            userName = dataSnapshot.child("userNickname").toString()
-            uri = Uri.parse(dataSnapshot.child("userImage").toString())
-            reviewSum = dataSnapshot.child("reviewSum").toString().toFloat()
-            reviewNum = dataSnapshot.child("reviewNum").toString().toInt()
-            reviewMax = dataSnapshot.child("reviewMax").toString().toFloat()
-            reviewMin = dataSnapshot.child("reviewMin").toString().toFloat()
-        }
+            userName = dataSnapshot.child("userNickname").value.toString()
+            Glide.with(this).load("https://firebasestorage.googleapis.com/v0/b/banana-8d3ab.appspot.com/o/Image%2F" +
+                    "${mateID}?alt=media").circleCrop().into(profileImage)
+            reviewSum = dataSnapshot.child("reviewSum").value.toString().toFloat()
+            reviewNum = dataSnapshot.child("reviewNum").value.toString().toInt()
+            reviewMax = dataSnapshot.child("reviewMax").value.toString().toFloat()
+            reviewMin = dataSnapshot.child("reviewMin").value.toString().toFloat()
 
-        // xml 파일에 매핑
-        username.text = userName
-        profileImage.setImageURI(uri)
+            // xml 파일에 매핑
+            username.text = userName
 
-        // rating bar
-        var grade : Float = 0f
-        ratingBar.setOnRatingBarChangeListener{ _, rating, _ ->
-            grade = rating
+            // rating bar
+            ratingBar.setOnRatingBarChangeListener{ _, rating, _ ->
+                grade = rating
+            }
         }
 
         review_button.setOnClickListener{
-            val intent = Intent(this,MyPage::class.java)
+            val intent = Intent(this,ChatActivity::class.java)
 
             // 별점 평점 update
             // 리뷰가 3개 이상이면 절단 평균 계산하는 방식으로 수정함.

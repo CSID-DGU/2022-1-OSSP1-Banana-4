@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.matching.MatchLoading
 import com.example.myapplication.matching.Matching
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -58,34 +59,6 @@ class CategoryPage : AppCompatActivity() {
         }
 //        //######################
 
-
-
-        adapter = BrandAdapter(this)
-
-        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        var  recycleView:RecyclerView= findViewById(R.id.recycleView)
-
-        recycleView.layoutManager = layoutManager
-
-        recycleView.adapter=adapter
-
-        var waitUserNum=0
-        databaseReference.addValueEventListener(object :ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                val test=snapshot.child("WaitUsers")
-                waitUserNum= snapshot.child("WaitUsers").child("waitUserNum")
-                    .value.toString().toInt()
-
-                Log.e("qwer",waitUserNum.toString())
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-
-
-        //#############################카테고리불러오기###########//
         userReference=database.getReference("resData")
 
         var i=0
@@ -112,14 +85,44 @@ class CategoryPage : AppCompatActivity() {
         }
 
 
-        Log.e("snap",resCate.toString())
 
         val rescateName=value.toString()
+
+
+        //####
+
+        adapter = BrandAdapter(this)
+
+        val layoutManager=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+        var  recycleView:RecyclerView= findViewById(R.id.recycleView)
+
+        recycleView.layoutManager = layoutManager
+
+        recycleView.adapter=adapter
+
+        var waitUserNum=0
+        databaseReference.addValueEventListener(object :ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                //val test=snapshot.child("WaitUsers")
+                waitUserNum= snapshot.child("WaitUsers").child(resCate)
+                    .child("waitUserNum")
+                    .value.toString().toInt()
+
+                Log.e("qwer",waitUserNum.toString())
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+
+        //#############################카테고리불러오기###########//
+
 
         adapter.brandList.add(Brand("상관없음","0","0","0"))
 
 
-        Log.e("nowCate",sendCate)
 
         userReference.addValueEventListener(object :ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -142,7 +145,7 @@ class CategoryPage : AppCompatActivity() {
                     i++
                 }
 
-                
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -158,32 +161,31 @@ class CategoryPage : AppCompatActivity() {
 
         //버튼
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
-        btn_search.setOnClickListener({
+        btn_search.setOnClickListener {
 
-            databaseReference.child("WaitUsers")
+            databaseReference.child("WaitUsers").child(resCate)
                 .child(waitUserNum.toString()).child("uid").setValue(userid)
 
-            databaseReference.child("WaitUsers")
+            databaseReference.child("WaitUsers").child(resCate)
                 .child(waitUserNum.toString()).child("grade").setValue(grade)
             waitUserNum++
-            databaseReference.child("WaitUsers")
+            databaseReference.child("WaitUsers").child(resCate)
                 .child("waitUserNum").setValue(waitUserNum)
 
 
-            Log.e("nowBrandList",arr.toString())
+            Log.e("nowBrandList", arr.toString())
 
 
-            val intent=Intent(this, Matching::class.java)
+            val intent = Intent(this, MatchLoading::class.java)
             intent.putExtra("grade", grade.toString())
             intent.putExtra("brandList", arr)
-            intent.putExtra("category", sendCate.toString() )
-
+            intent.putExtra("category", sendCate.toString())
             startActivity(intent)
-        })
+        }
 
         val btn_again=findViewById<Button>(R.id.btn_again) //다시하기버튼 메인페이지로
         btn_again.setOnClickListener({
-            databaseReference.child("WaitUsers")
+            databaseReference.child("WaitUsers").child(resCate)
                 .child(waitUserNum.toString()).removeValue() //유저데이터초기화
             //waitUserNum--
             val intent=Intent(this, MainPage::class.java)
@@ -238,7 +240,7 @@ class CategoryPage : AppCompatActivity() {
                             }
                             i++
                         }
-                        databaseReference.child("WaitUsers")
+                        databaseReference.child("WaitUsers").child(resCate)
                             .child(waitUserNum.toString())
                             .child("brandList")
 
@@ -256,7 +258,7 @@ class CategoryPage : AppCompatActivity() {
                         while(i<3){
                             if(arr[i]==text_num) {
                                 databaseReference
-                                    .child("WaitUsers")
+                                    .child("WaitUsers").child(resCate)
                                     .child(waitUserNum.toString()).child("brandList")
                                     .child((i + 1).toString()).removeValue() //올라간데이터를삭제해줌
                                 arr[i]="0"

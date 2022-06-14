@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.item_mate.view.*
 
@@ -40,7 +41,7 @@ class MateAdapter(private val context: Context) : RecyclerView.Adapter<MateAdapt
 
         fun bind(item: MateData){
             itemView.mate_username.text = item.name
-            itemView.mate_profile_image.setImageURI(item.imageURI)
+            Glide.with(context).load(item.imageURL).circleCrop().into(itemView.mate_profile_image)
         }
 
     }
