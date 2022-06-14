@@ -157,10 +157,10 @@ class CategoryPage : AppCompatActivity() {
         val btn_search=findViewById<Button>(R.id.btn_search) //매칭 시작 버튼 일단 메인페이지가게설정
         btn_search.setOnClickListener({
 
-            databaseReference.child("WaitUsers").child("List")
+            databaseReference.child("WaitUsers")
                 .child(waitUserNum.toString()).child("uid").setValue(userid)
 
-            databaseReference.child("WaitUsers").child("List")
+            databaseReference.child("WaitUsers")
                 .child(waitUserNum.toString()).child("grade").setValue(grade)
             waitUserNum++
             databaseReference.child("WaitUsers")
@@ -180,7 +180,7 @@ class CategoryPage : AppCompatActivity() {
 
         val btn_again=findViewById<Button>(R.id.btn_again) //다시하기버튼 메인페이지로
         btn_again.setOnClickListener({
-            databaseReference.child("WaitUsers").child("List")
+            databaseReference.child("WaitUsers")
                 .child(waitUserNum.toString()).removeValue() //유저데이터초기화
             //waitUserNum--
             val intent=Intent(this, MainPage::class.java)
@@ -236,7 +236,6 @@ class CategoryPage : AppCompatActivity() {
                             i++
                         }
                         databaseReference.child("WaitUsers")
-                            .child("List")
                             .child(waitUserNum.toString())
                             .child("brandList")
 
@@ -253,7 +252,7 @@ class CategoryPage : AppCompatActivity() {
                         i=0
                         while(i<3){
                             if(arr[i]==text_num) {
-                                databaseReference.child("List")
+                                databaseReference
                                     .child("WaitUsers")
                                     .child(waitUserNum.toString()).child("brandList")
                                     .child((i + 1).toString()).removeValue() //올라간데이터를삭제해줌
