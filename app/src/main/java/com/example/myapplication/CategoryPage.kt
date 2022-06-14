@@ -18,6 +18,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.matching.Matching
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.*
@@ -172,9 +173,9 @@ class CategoryPage : AppCompatActivity() {
             Log.e("nowBrandList",arr.toString())
 
 
-            val intent=Intent(this, MatchingSuccess::class.java)
+            val intent=Intent(this, Matching::class.java)
             intent.putExtra("grade", grade.toString())
-            intent.putExtra("brandList", arr[0].toString())
+            intent.putExtra("brandList", arr)
             intent.putExtra("category", sendCate.toString() )
 
             startActivity(intent)
