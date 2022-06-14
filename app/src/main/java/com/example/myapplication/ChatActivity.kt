@@ -33,9 +33,13 @@ class ChatActivity : AppCompatActivity() {
 
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "강현우"
+        nickname = "none"
         chatNum = "0"
-        var chatOder = "0"
+
+//        myRef = database.getReference("User").child(uid).child("userNickname")
+//        myRef.get().addOnSuccessListener{
+//            nickname = it.value.toString()
+//        }
 
         //hash map에 매칭된 사용자들, (이름, uid) 넝어주기
         val postListener = object : ValueEventListener {
@@ -58,7 +62,7 @@ class ChatActivity : AppCompatActivity() {
         var tempMap = HashMap<String, String>()
         tempMap.put(nickname, uid)
         myRef = database.getReference("message").child(chatNum).child("UsersID")
-        myRef.child(chatOder).setValue(tempMap)
+        myRef.child(uid).setValue(tempMap)
         myRef.addValueEventListener(postListener)
 
         myRef = database.getReference("message").child(chatNum).child("contents")
