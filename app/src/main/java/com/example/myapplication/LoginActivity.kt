@@ -76,4 +76,12 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+    //로그인 자동
+    override fun onStart() {
+        super.onStart()
+        if(auth?.currentUser != null) {
+            startActivity(Intent(this, MainPage::class.java))
+            finish()
+        }
+    }
 }
