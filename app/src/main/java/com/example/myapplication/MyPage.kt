@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RatingBar
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
@@ -122,6 +123,14 @@ class MyPage : AppCompatActivity() {
         to_main_button.setOnClickListener{
             val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
+        }
+
+        Logout.setOnClickListener{
+            auth.signOut()
+            Toast.makeText(this,"로그아웃 되셨습니다", Toast.LENGTH_SHORT).show()
+            val intent=Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
