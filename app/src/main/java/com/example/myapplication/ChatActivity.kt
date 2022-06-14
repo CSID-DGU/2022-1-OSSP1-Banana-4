@@ -33,7 +33,7 @@ class ChatActivity : AppCompatActivity() {
 
         //이름 채팅방 설정
         //이거는 매칭 화면에서 정보를 넣어주면 됨
-        nickname = "이지호"
+        nickname = "홍연주"
         chatNum = "0"
 
         //hash map에 매칭된 사용자들, (이름, uid) 넝어주기
@@ -67,13 +67,14 @@ class ChatActivity : AppCompatActivity() {
         chat_back_button.setOnClickListener {
             val intent = Intent(this, MainPage::class.java)
             startActivity(intent)
-
-
         }
 
         //나가기 버터느
         chat_quit_button.setOnClickListener {
             database.getReference("message").child(chatNum).removeValue()
+            val intent = Intent(this, MainPage::class.java)
+            startActivity(intent)
+            finish()
         }
 
         //여기서 작성했던 채팅 목록들 가져옴
