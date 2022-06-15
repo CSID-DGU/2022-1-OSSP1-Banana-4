@@ -154,10 +154,10 @@ class MatchLoading : AppCompatActivity() {
             }
             if (waitUsersNum == 0) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
                 Toast.makeText(
-                        this,
-                        "매칭을 시작합니다.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    this,
+                    "매칭을 시작합니다.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
                     waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum")
                     waitUserNum =

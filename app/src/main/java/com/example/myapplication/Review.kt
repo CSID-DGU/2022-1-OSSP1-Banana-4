@@ -71,7 +71,7 @@ class Review : AppCompatActivity()  {
         }
 
         review_button.setOnClickListener{
-            val intent = Intent(this,ChatActivity::class.java)
+            val intent = Intent(this,MainPage::class.java)
 
             // 별점 평점 update
             // 리뷰가 3개 이상이면 절단 평균 계산하는 방식으로 수정함.
