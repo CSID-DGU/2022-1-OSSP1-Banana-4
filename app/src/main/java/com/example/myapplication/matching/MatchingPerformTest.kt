@@ -7,15 +7,12 @@ import kotlin.time.measureTimedValue
 @OptIn(ExperimentalTime::class)
 fun main() {
     var userList: MutableList<WaitUserData> = mutableListOf()
-    var failUserList: MutableList<WaitUserData> = mutableListOf()
     var mateList = mutableListOf<MateData>()
     val gradeMin: Float = 0f
     val gradeMax: Float = 5f
     var ranGrade = 0f
     var ranBrandNum: Int
     var ranBrandList: MutableList<Int> = mutableListOf()
-    var ranBrand: Int
-    var weight : Int
 
     var brandList : MutableList<Int> = mutableListOf()
     for(index in 1..123){
@@ -25,10 +22,9 @@ fun main() {
     for(userNum in 10..1000 step 10){
         print("\n$userNum")
         userList = mutableListOf()
-        failUserList = mutableListOf()
         mateList = mutableListOf()
         for (j in 0 until userNum) {
-            ranBrandNum = Random.nextInt(100) // 1/5꼴로 상관 없음 사용자.
+            ranBrandNum = Random.nextInt(1000) // 1/5꼴로 상관 없음 사용자.
             ranGrade = gradeMin + Random.nextFloat() * (gradeMax - gradeMin)
             brandList.shuffle()
             if (ranBrandNum == 0) { // 상관 없음
@@ -83,6 +79,7 @@ fun main() {
         val measuredTime2 = measureTimedValue {
             // 선택
             for (user in userList) {
+                mate = MateData(" ", mutableListOf())
                 if (finishList.contains(user)) {
                     continue
                 }
@@ -94,7 +91,11 @@ fun main() {
                         if (success >= 2) { // 2명까지만 choice
                             break
                         } else if (!finishList.contains(j)) {
+                            if(i==1 && success>=1){
+                                break
+                            }
                             mate.userList.add(j)
+                            success++
                             finishList.add(j)
                         }
                     }
@@ -106,28 +107,34 @@ fun main() {
                     user.fail++
                     continue
                 }
+                mate.id = mate.userList[0].uid
                 mateList.add(mate)
-                mate = MateData(" ", mutableListOf())
             }
         }
         print(" ${measuredTime2.duration.inWholeMicroseconds}")
 
-        // print
-        /*if(userNum <=100){
-            userList.forEach { user ->
-                println("uid=${user.uid}, grade=${user.grade}, rank=${user.rank}, brandList=${user.brandList}, fail=${user.fail}")
-            }
-        }*/
-
         var failUserNum = 0
         for(user in userList){
             if(user.fail>0){
-                failUserNum ++
+                failUserNum++
             }
         }
 
         print(" ${measuredTime.duration.inWholeMicroseconds+measuredTime1.duration.inWholeMicroseconds+measuredTime2.duration.inWholeMicroseconds}")
         var failPro : Float = failUserNum / userNum.toFloat() * 100
         print(" ${100-failPro}%")
+
+        // print
+        if(userNum ==1000 || userNum == 10){
+            println()
+            mateList.forEach { mate ->
+                print("userList=[ ")
+                mate.userList.forEach {
+                    print(it.brandList)
+                }
+                println(" ]")
+            }
+            println()
+        }
     }
 }

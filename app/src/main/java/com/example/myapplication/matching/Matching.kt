@@ -118,6 +118,7 @@ class Matching{
         var success: Int
 
         for (user in this.userList) {
+            mate = MateData("",mutableListOf())
             if (finishList.contains(user)) {
                 continue
             }
@@ -129,6 +130,9 @@ class Matching{
                     if (success >= 2) { // 2명까지만 choice
                         break
                     } else if (!finishList.contains(j)) {
+                        if(i==1 && success>=1){
+                            break
+                        }
                         // println("matching됨" + user.uid + "와" + j.uid)
                         mate.userList.add(j)
                         success++
@@ -145,7 +149,7 @@ class Matching{
             }
             mate.id = mate.userList[0].uid
             mateList.add(mate)
-            mate = MateData("",mutableListOf())
+
         }
         this.mateList = mateList
     }

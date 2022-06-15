@@ -105,8 +105,8 @@ class MatchLoading : AppCompatActivity() {
             }
         }
 
-        val waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum")
-        val waitUserNum =
+        var waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum")
+        var waitUserNum =
             FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum")
         val uid = auth.currentUser?.uid.toString()
         val finish = FirebaseDatabase.getInstance().getReference("FinishedMatch")
@@ -152,8 +152,16 @@ class MatchLoading : AppCompatActivity() {
                     waitUserNum.setValue(++waitUsersNum)
                 }
             }
-            if (waitUsersNum == 1) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
+            if (waitUsersNum == 0) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
+                Toast.makeText(
+                        this,
+                        "매칭을 시작합니다.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
+                    waitUsers = FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum")
+                    waitUserNum =
+                        FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum")
                     println("10초 후 WAITUSERNUM : $waitUsersNum")
                     match(matching, waitUsers, waitUsersNum, categoryNum) // 매칭 & 대기열 리셋
 
@@ -182,6 +190,11 @@ class MatchLoading : AppCompatActivity() {
                 }, 10000)
             } else { // 대기열에 추가만 되고 총대 x
                 // 총대를 멘 user가 매칭을 끝낼 때까지 기다렸다가 finish에 자기 자신이 추가되면 나옴.
+                Toast.makeText(
+                    this,
+                    "매칭 결과를 기다리고 있습니다.",
+                    Toast.LENGTH_SHORT
+                ).show()
                 timer(period = 1000, initialDelay = 10000) {
                     finish.get().addOnSuccessListener {
                         it.children.forEach {
