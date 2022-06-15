@@ -26,7 +26,7 @@ import org.w3c.dom.Text
 class MatchingSuccess : AppCompatActivity() {
 
     lateinit var databaseReference: DatabaseReference
-    lateinit var teamReference: DatabaseReference
+    lateinit var userReference: DatabaseReference
     lateinit var imageIv:ImageView
 
     lateinit var storage:FirebaseStorage
@@ -41,9 +41,16 @@ class MatchingSuccess : AppCompatActivity() {
         var database = FirebaseDatabase.getInstance();
 
         databaseReference = database.getReference()
+        userReference = database.getReference()
 
+        var nickname="nickname"
+        var userid="id"
+        userid= FirebaseAuth.getInstance().currentUser?.uid.toString()
 
-        //var teamid=intent.getStringExtra("teamID")
+        userReference.child("Users").child(userid).child("userNickname")
+            .get().addOnSuccessListener{
+            nickname= it.value.toString()
+        }
 
 
 
@@ -56,7 +63,7 @@ class MatchingSuccess : AppCompatActivity() {
         //###
 
 
-        val value=intent.getStringExtra("teamID") //임시로 카테고리불러오기
+        val teamid=intent.getStringExtra("teamID") //임시로 카테고리불러오기
         val category=intent.getStringExtra("category") //임시로 카테고리불러오기
 
         var sendCate="임시카테고리명"
@@ -98,9 +105,13 @@ class MatchingSuccess : AppCompatActivity() {
 
         val btn_done=findViewById<Button>(R.id.btn_done) //매칭 완료 채팅방생성
         btn_done.setOnClickListener({
-            val intent= Intent(this, ChatActivity::class.java)
-            intent.putExtra("teamID", value.toString())
 
+            val intent= Intent(this, ChatActivity::class.java)
+            intent.putExtra("nickname", nickname.toString())
+
+            intent.putExtra("teamid", teamid.toString())
+
+            Log.e(userid,nickname)
             startActivity(intent)
         })
     }
