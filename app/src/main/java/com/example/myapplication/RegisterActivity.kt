@@ -113,7 +113,7 @@ class RegisterActivity : AppCompatActivity() {
                             hashMap.put("reviewMax",reviewMax)
                             hashMap.put("reviewMin",reviewMin)
                             hashMap.put("reviewSum",reviewSum)
-                            hashMap.put("userReview",reviewNum)
+                            hashMap.put("reviewNum",reviewNum)
 
                             var FloatHashMap:HashMap<String,Float> = HashMap() //유저의 평점 관리 해쉬맵
                             //FloatHashMap.put("userGrade",userGrade)
