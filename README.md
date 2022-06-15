@@ -14,13 +14,14 @@ Kotlin & Firebase
 ## 3. 어플 소개
 (1) 로그인 및 회원가입
 
-
-<img width="50%" src="https://user-images.githubusercontent.com/87844641/173760147-b5856c81-0647-45a6-9b13-dab5c4597f6d.png"/>
-
-
-<img width="50%" src="https://user-images.githubusercontent.com/87844641/173760479-a0da532b-d12f-4424-b720-34a21cf63740.png"/>
+이메일& 비밀번호를 사용하여 로그인하게 만들었고, 한번 로그인하면 자동로그인이 가능하다.<br> 
+<img width="20%" src="https://user-images.githubusercontent.com/87844641/173760147-b5856c81-0647-45a6-9b13-dab5c4597f6d.png"/>
 
 
+<img width="20%" src="https://user-images.githubusercontent.com/87844641/173760479-a0da532b-d12f-4424-b720-34a21cf63740.png"/>
+
+회원가입을 위해선 **동국대 웹메일(@dgu.ac.kr 및 @dongguk.edu)** 만을 사용해야하고, 등록한 웹메일로 인증번호가 발송된다.<br>
+그 이외에 학번, 이름, 아이디, 비밀번호를 입력하게 하였다. 
 (2) 카테고리 페이지
 
 
