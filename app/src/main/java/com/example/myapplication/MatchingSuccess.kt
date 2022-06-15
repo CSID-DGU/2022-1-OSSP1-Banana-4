@@ -43,7 +43,7 @@ class MatchingSuccess : AppCompatActivity() {
         databaseReference = database.getReference()
 
 
-        var teamid=intent.getStringExtra("teamID")
+        //var teamid=intent.getStringExtra("teamID")
 
 
 
@@ -56,13 +56,14 @@ class MatchingSuccess : AppCompatActivity() {
         //###
 
 
-        val value=intent.getStringExtra("dfs") //임시로 카테고리불러오기
+        val value=intent.getStringExtra("teamID") //임시로 카테고리불러오기
+        val category=intent.getStringExtra("category") //임시로 카테고리불러오기
+
+        var sendCate="임시카테고리명"
 
 
 
-        var sendCate ="임시카테고리명"
-
-        when (value){
+        when (category){
             "meat"->{sendCate="고기/구이"}
             "rice"->{sendCate= "도시락"}
             "sushi"->{sendCate= "돈까스/회/일식"}
@@ -98,7 +99,7 @@ class MatchingSuccess : AppCompatActivity() {
         val btn_done=findViewById<Button>(R.id.btn_done) //매칭 완료 채팅방생성
         btn_done.setOnClickListener({
             val intent= Intent(this, ChatActivity::class.java)
-            intent.putExtra("teamid", teamid.toString())
+            intent.putExtra("teamID", value.toString())
 
             startActivity(intent)
         })
