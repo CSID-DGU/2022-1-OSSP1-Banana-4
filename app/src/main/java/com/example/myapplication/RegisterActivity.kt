@@ -44,14 +44,14 @@ class RegisterActivity : AppCompatActivity() {
         R_btn = findViewById(R.id.register_btn)
         A_btn=findViewById(R.id.Auth_button)
 
-        var userGrade:String="" //Float= 0F
-        var reviewNum:String="" //Int=0
+        var userGrade:String="0" //Float= 0F
+        var reviewNum:String="0" //Int=0
         var userReview= mutableListOf<String>()
         var mateList= mutableListOf<String>()
 
-        var reviewMax:String="" //Float=0F
-        var reviewSum:String="" //Float=0F
-        var reviewMin:String="" //Float=0F
+        var reviewMax:String="5" //Float=0F
+        var reviewSum:String="0" //Float=0F
+        var reviewMin:String="0" //Float=0F
 
         val MailFunction=MailSender() // MailSender의 클래스 객체 저장
         var check=false //인증번호가 맞다면 check값을 true로 지정하고 회원가입버튼 클릭시 이를 확인한다

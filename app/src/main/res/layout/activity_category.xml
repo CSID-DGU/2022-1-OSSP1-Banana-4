@@ -76,8 +76,9 @@
                 android:id="@+id/btn_search"
                 android:layout_width="112dp"
                 android:layout_height="65dp"
-                android:text="찾기"
-                android:backgroundTint="#ffff00"/>
+                android:backgroundTint="#FFFED567"
+                android:textStyle="bold"
+                android:text="찾기" />
 
             />
         </LinearLayout>
