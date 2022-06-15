@@ -24,19 +24,19 @@ fun main() {
         userList = mutableListOf()
         mateList = mutableListOf()
         for (j in 0 until userNum) {
-            ranBrandNum = Random.nextInt(1000) // 1/5꼴로 상관 없음 사용자.
+            //ranBrandNum = Random.nextInt(1000) // 1/5꼴로 상관 없음 사용자.
             ranGrade = gradeMin + Random.nextFloat() * (gradeMax - gradeMin)
             brandList.shuffle()
-            if (ranBrandNum == 0) { // 상관 없음
-                userList.add(WaitUserData("", ranGrade, j, mutableListOf(0)))
-            } else {
+            //if (ranBrandNum == 0) { // 상관 없음
+                //userList.add(WaitUserData("", ranGrade, j, mutableListOf(0)))
+            //} else {
                 ranBrandNum = Random.nextInt(3)+1 // 1,2,3
                 ranBrandList = mutableListOf()
                 for (i in 0 until ranBrandNum) { // 선호하는 브랜드가 1개, 2개, 3개
                     ranBrandList.add(i, brandList[i])
                 }
                 userList.add(WaitUserData("", ranGrade, j, ranBrandList))
-            }
+            //}
         }
 
         val measuredTime = measureTimedValue {
