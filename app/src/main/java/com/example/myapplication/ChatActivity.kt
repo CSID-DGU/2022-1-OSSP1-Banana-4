@@ -79,7 +79,7 @@ class ChatActivity : AppCompatActivity() {
         //나가기 버터느
         chat_quit_button.setOnClickListener {
             database.getReference("message").child(chatNum).removeValue()
-            val intent = Intent(this, MainPage::class.java)
+            val intent = Intent(this, FinishActivity::class.java)
             intent.putExtra("userMap", adapter.UsersIDMap);
             startActivity(intent)
             finish()
