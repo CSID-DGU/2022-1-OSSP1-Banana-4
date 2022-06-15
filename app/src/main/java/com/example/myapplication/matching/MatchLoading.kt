@@ -125,7 +125,7 @@ class MatchLoading : AppCompatActivity() {
             println("value : $waitUsersNum")*/
             // 실패한 유저가 다시 들어오는 경우에는 대기열에 새로 추가해줘야 함.
             if (failedNum > 0) {
-                if (failedNum >= 3) { // 실패한 횟수가 3번 이상이라면 매칭 실패 페이지로 이동
+                if (failedNum == 1) { // 실패한 횟수가 3번 이상이라면 매칭 실패 페이지로 이동
                     /*Toast.makeText(
                         this,
                         "매칭에 3번 이상 실패하여 매칭을 종료하였습니다.",
@@ -152,7 +152,7 @@ class MatchLoading : AppCompatActivity() {
                     waitUserNum.setValue(++waitUsersNum)
                 }
             }
-            if (waitUsersNum == 1) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
+            if (waitUsersNum == 3) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
                     println("10초 후 WAITUSERNUM : $waitUsersNum")
                     match(matching, waitUsers, waitUsersNum, categoryNum) // 매칭 & 대기열 리셋
@@ -209,14 +209,14 @@ class MatchLoading : AppCompatActivity() {
     ) {
         finish.child(uid).child("isSuccess").get().addOnSuccessListener {
             isSuccess = it.value.toString().toBoolean()
-            /*println("isSuccess : $isSuccess")*/
+            println("isSuccess : $isSuccess")
             // 내가 성공 인지 실패 인지 검사
             if (isSuccess) {
-                /*Toast.makeText(
+                Toast.makeText(
                     this,
                     "매칭에 성공했습니다.",
                     Toast.LENGTH_SHORT
-                ).show()*/
+                ).show()
                 val successIntent = Intent(this, MatchingSuccess::class.java)
                 finish.child(uid).child("teamID").get().addOnSuccessListener {
                     successIntent.putExtra("teamID", it.value.toString())
@@ -250,7 +250,7 @@ class MatchLoading : AppCompatActivity() {
         // 초기화
         matching.initData(waitUsers, waitUsersNum)
         Handler(Looper.getMainLooper()).postDelayed({
-            waitUsers.removeValue()
+            // waitUsers.removeValue()
             FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum").setValue(0)
             // 정렬
             matching.sort()

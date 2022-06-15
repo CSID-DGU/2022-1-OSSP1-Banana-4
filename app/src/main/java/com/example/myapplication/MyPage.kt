@@ -92,7 +92,7 @@ class MyPage : AppCompatActivity() {
             user_mate.adapter=mateAdapter
 
             mates.apply {
-                for(i in 0 until mateNum) {
+                for(i in 0 until mateNum) {`
                     val mate = FirebaseDatabase.getInstance().getReference("Users").child(mateList[i])
                     var username : String =""
                     var uri : Uri = Uri.parse("")

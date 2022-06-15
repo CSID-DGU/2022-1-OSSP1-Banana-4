@@ -181,6 +181,7 @@ class CategoryPage : AppCompatActivity() {
             intent.putExtra("grade", grade.toString())
             intent.putExtra("brandList", arr)
             intent.putExtra("category", sendCate.toString())
+            intent.putExtra("failedNum",0)
             //val arr = intent.getSerializableExtra("brandList") as ArrayList<String>
             //브랜드리스트는 위와같이 받아오면됨! 이후 arr[0], arr[1]등 사용가능
             startActivity(intent)
