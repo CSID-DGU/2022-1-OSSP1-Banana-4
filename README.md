@@ -13,10 +13,12 @@ Kotlin & Firebase
 
 ## 3. 어플 소개
 (1) 로그인 및 회원가입
-<img width="80%" src="https://user-images.githubusercontent.com/87844641/173760147-b5856c81-0647-45a6-9b13-dab5c4597f6d.png"/>
 
 
-<img width="80%" src="https://user-images.githubusercontent.com/87844641/173760479-a0da532b-d12f-4424-b720-34a21cf63740.png"/>
+<img width="50%" src="https://user-images.githubusercontent.com/87844641/173760147-b5856c81-0647-45a6-9b13-dab5c4597f6d.png"/>
+
+
+<img width="50%" src="https://user-images.githubusercontent.com/87844641/173760479-a0da532b-d12f-4424-b720-34a21cf63740.png"/>
 
 
 (2) 카테고리 페이지
