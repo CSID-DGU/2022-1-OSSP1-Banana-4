@@ -152,7 +152,7 @@ class MatchLoading : AppCompatActivity() {
                     waitUserNum.setValue(++waitUsersNum)
                 }
             }
-            if (waitUsersNum == 3) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
+            if (waitUsersNum == 1) { // 실제 코드에서는 waitUserNum == 1, 첫 번째 대기자라면 총대
                 Handler(Looper.getMainLooper()).postDelayed({ // 10초동안 대기자 모으고 계산.
                     println("10초 후 WAITUSERNUM : $waitUsersNum")
                     match(matching, waitUsers, waitUsersNum, categoryNum) // 매칭 & 대기열 리셋
@@ -237,6 +237,7 @@ class MatchLoading : AppCompatActivity() {
                 recIntend.putExtra("failedNum", failedNum + 1)
                 recIntend.putExtra("grade", grade+0.5f)
                 recIntend.putExtra("brandList", brandList)
+                recIntend.putExtra("category",category)
                 finish.child(uid).removeValue()
                 startActivity(recIntend) //액티비티 열기
                 overridePendingTransition(0, 0);//인텐트 효과 없애기
@@ -250,7 +251,7 @@ class MatchLoading : AppCompatActivity() {
         // 초기화
         matching.initData(waitUsers, waitUsersNum)
         Handler(Looper.getMainLooper()).postDelayed({
-            // waitUsers.removeValue()
+            waitUsers.removeValue()
             FirebaseDatabase.getInstance().getReference("WaitUsers").child("$categoryNum").child("waitUserNum").setValue(0)
             // 정렬
             matching.sort()
