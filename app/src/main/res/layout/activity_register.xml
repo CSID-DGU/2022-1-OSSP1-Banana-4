@@ -15,16 +15,16 @@
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.009" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="282dp"
-        android:layout_height="52dp"
+        android:layout_width="232dp"
+        android:layout_height="49dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
@@ -32,7 +32,7 @@
         android:hint="동국대 웹메일을 입력해주세요"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toStartOf="@+id/submit_btn"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
@@ -44,7 +44,7 @@
         android:hint="비밀번호 입력"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintHorizontal_bias="0.409"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -63,6 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/pwd_check"
         app:layout_constraintVertical_bias="0.024" />
 
+
     <EditText
         android:id="@+id/pwd_check"
         android:layout_width="340dp"
@@ -72,17 +73,16 @@
         android:hint="비밀번호 확인"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.295"
+        app:layout_constraintHorizontal_bias="0.38"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pwd" />
-
 
     <TextView
         android:id="@+id/editTextTextPersonName"
         android:layout_width="126dp"
         android:layout_height="28dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
@@ -93,14 +93,14 @@
 
     <EditText
         android:id="@+id/Name"
-        android:layout_width="176dp"
-        android:layout_height="44dp"
+        android:layout_width="145dp"
+        android:layout_height="47dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="이름을 입력해주세요"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/nickname"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
@@ -108,7 +108,7 @@
         android:id="@+id/submit_btn"
         android:layout_width="87dp"
         android:layout_height="44dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
         android:backgroundTint="#FFFED567"
         android:text="SUBMIT"
@@ -133,14 +133,14 @@
 
     <EditText
         android:id="@+id/student_ID"
-        android:layout_width="382dp"
+        android:layout_width="308dp"
         android:layout_height="53dp"
         android:layout_marginTop="4dp"
         android:ems="10"
         android:hint="학번을 입력해주세요"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintHorizontal_bias="0.31"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -161,8 +161,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Password"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -173,21 +173,21 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="68dp"
         android:text="Nickname"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/nickname"
-        android:layout_width="196dp"
-        android:layout_height="45dp"
+        android:layout_width="175dp"
+        android:layout_height="47dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginEnd="32dp"
         android:ems="10"
         android:hint="닉네임을 입력해주세요"
         android:inputType="textPersonName"
@@ -196,9 +196,9 @@
 
     <EditText
         android:id="@+id/Auth_num"
-        android:layout_width="277dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="238dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="12dp"
         android:ems="10"
         android:hint="인증번호 입력"

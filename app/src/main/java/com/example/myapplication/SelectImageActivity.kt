@@ -31,12 +31,13 @@ class SelectImageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_select_image)
         binding = ActivitySelectImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        var check=false
         auth = FirebaseAuth.getInstance().currentUser!!
         database = FirebaseDatabase.getInstance()
         storage = FirebaseStorage.getInstance()
 
         binding.userImage.setOnClickListener {
+            check=true
             val intent = Intent()
             intent.action = Intent.ACTION_GET_CONTENT
             intent.type = "image/*"
@@ -44,11 +45,15 @@ class SelectImageActivity : AppCompatActivity() {
         }
 
         binding.Button.setOnClickListener{
+            if(check!=true)
+                Toast.makeText(this,"이미지를 선택해주세요",Toast.LENGTH_SHORT).show()
+            else {
                 uploadImage()
                 //메인 페이지로 이동
                 val intent = Intent(this, MainPage::class.java)
                 startActivity(intent)
                 finish()
+            }
         }
     }
 
