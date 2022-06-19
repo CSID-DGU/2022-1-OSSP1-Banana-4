@@ -8,6 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.FindPasswordActivity
+import com.example.myapplication.R
+import com.example.myapplication.RegisterActivity
+import com.example.myapplication.matching.MatchLoading
+import com.example.myapplication.matching.Matching
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -48,26 +53,35 @@ class LoginActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         email.setText("")
                         pwd.setText("")
-                        val intent = //Intent(this,메인페이지)
+                        val intent = Intent(this,MainPage::class.java)
                         startActivity(intent)
                         finish()
                     }
                     else{
-                        Toast.makeText(applicationContext,
+                        Toast.makeText(this,
                             "이메일 또는 비밀번호가 유효하지 않습니다",
-                        Toast.LENGTH_SHORT).show()
+                            Toast.LENGTH_SHORT).show()
                     }
                 }
             }
         }
         btn_signup.setOnClickListener{
-            val intent=Intent(this,MainActivity::class.java)
+            val intent=Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
         btn_findpwd.setOnClickListener{
-            val intent=Intent(this,FindpasswordActivity::class.java)
+            val intent=Intent(this, FindPasswordActivity::class.java)
             startActivity(intent)
+        }
+    }
+    //로그인 자동
+    override fun onStart() {
+        super.onStart()
+        if(auth?.currentUser != null) {
+            startActivity(Intent(this, MainPage::class.java))
+            finish()
         }
     }
 }

@@ -3,22 +3,57 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@mipmap/ic_main"
+        android:label="DeliShare"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyApplication">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".UserAdapter"
+            android:name=".FinishActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".MatchingSuccess"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".MatchingFailed"
+            android:exported="false" />
+        <activity
+            android:name=".Review"
+            android:exported="false" />
+        <activity
+            android:name=".MyPage"
+            android:exported="false" />
+        <activity
+            android:name=".ChatActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:exported="false" />
+        <activity
+            android:name=".MainPage"
+            android:exported="false" />
+        <activity
+            android:name=".SelectImageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FindPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CategoryPage"
+            android:exported="false" />
+        <activity
+            android:name=".matching.MatchLoading"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
