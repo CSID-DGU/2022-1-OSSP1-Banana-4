@@ -5,7 +5,7 @@
 
 |이름|학과|역할|
 |------|---|---|
-|[김효정](https://github.com/dgkhj) [![](https://img.shields.io/badge/Github-dgkhj-blue?style=flat-square&logo=Github)](https://github.com/dgkhj)|컴퓨터공학전공|팀장 |
+|[김효정](https://github.com/hyojKim2) [![](https://img.shields.io/badge/Github-dgkhj-blue?style=flat-square&logo=Github)](https://github.com/hyojKim2)|컴퓨터공학전공|팀장 |
 |[강현우](https://github.com/rkdgusdn) [![](https://img.shields.io/badge/Github-rkdgusdn-blue?style=flat-square&logo=Github)](https://github.com/rkdgusdn)|컴퓨터공학전공|Chatting|
 |[이지호](https://github.com/jiholee0) [![](https://img.shields.io/badge/Github-jiholee0-blue?style=flat-square&logo=Github)](https://github.com/jiholee0)|컴퓨터공학전공|Matching Algorithm|
 |[김재철](https://github.com/kjc4410) [![](https://img.shields.io/badge/Github-kjc4410-blue?style=flat-square&logo=Github)](https://github.com/kjc4410)|의생명공학전공|User|
